@@ -1,0 +1,46 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 260px;
+}
+
+.login__header{
+    padding-top: 56px;
+}
+
+.login__title{
+    margin: 0;
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+@media screen 
+and (min-device-width : 768px)
+and (max-device-width : 1023px){
+    .login{
+        width: 396px;
+        align-items: flex-start;
+    }
+    .login__header{
+        padding-top: 232px;
+    }
+    .login__title{
+        padding-bottom: 40px;
+    }
+}
+
+@media screen 
+and (min-device-width : 1024px)
+and (max-device-width : 100vw){
+    .login{
+        width: 396px;
+        align-items: flex-start;
+    }
+    .login__header{
+        padding-top: 70px;
+    }
+    .login__title{
+        padding-bottom: 40px;
+    }
+}

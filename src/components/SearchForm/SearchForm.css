@@ -1,0 +1,35 @@
+.search-form{
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 18px;
+    position: relative;
+    padding-top: 60px;
+    display: flex;
+    width: 100%;
+}
+.search-label{
+    position: absolute;
+    left: 29px;
+    bottom: 16px;
+    color: var(--grey);
+}
+.search-input{
+    padding: 0;
+    padding-left: 16px;
+    outline: none;
+    border: 1px solid var(--grey);
+    border-radius: 28px;
+    height: 48px;
+    width: 100%;
+    max-width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.search-btn{
+    padding: 0;
+    position: absolute;
+    right: 20px;
+    top: 68px;
+    background-color: inherit;
+    border: none;
+}

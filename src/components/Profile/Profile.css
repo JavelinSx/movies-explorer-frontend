@@ -1,0 +1,118 @@
+.profile{
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+.profile__text{
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: var(--black);
+}
+.profile__title{
+    margin: 0;
+    padding-top: 70px;
+    padding-bottom: 80px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+}
+.profile__form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 55vh;
+}
+.profile__form-label{
+    text-align: left;
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--grey-e8)
+    
+}
+.profile__form-label:last-child{
+    padding-top: 10px;
+    border: none;
+}
+
+.profile__form-input{
+    background-color: inherit;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+    outline: none;
+    position: absolute;
+    right: 0;
+    border: none;
+    max-width: 120px;
+    transition: .2s;
+}
+
+.profile__input-container{
+    display: flex;
+    flex-direction: column;
+}
+.profile__btn{
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    background-color: inherit;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 0;
+    transition: .2s;
+}
+.profile__btn:hover{
+    opacity: .7;
+    transition: .2s;
+}
+.profile__btn-edit{
+    margin-bottom: 16px;
+}
+.profile__btn-exit{
+    font-weight: 500;
+    color: var(--red);
+}
+
+@media screen 
+and (min-device-width : 768px)
+and (max-device-width : 1024px){
+    .profile{
+        padding: 0;
+    }
+    .profile__form{
+        height: 26vh;
+        width: 410px;
+    }
+    .profile__title{
+        padding-top: 236px;
+        padding-bottom: 96px;
+    }
+    .profile__btn{
+        font-size: 13px;
+        line-height: 16px; 
+    }
+}
+
+@media screen 
+and (min-device-width : 1024px)
+and (max-device-width : 100vw){
+    .profile{
+        padding: 0;
+    }
+    .profile__form{
+        height: 45vh;
+        width: 410px;
+    }
+    .profile__title{
+        padding-top: 74px;
+        padding-bottom: 123px;
+    }
+    .profile__btn{
+        font-size: 13px;
+        line-height: 16px; 
+    }
+}
