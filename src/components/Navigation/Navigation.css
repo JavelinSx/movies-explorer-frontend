@@ -1,0 +1,44 @@
+.navigation-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 400;
+}
+.navigation-signup{
+    color: var(--white);
+}
+.navigation-signin{
+    font-weight: 500;
+    padding: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--green);
+    border-radius: 3px;
+    margin-left: 15px;
+}
+@media screen 
+and (min-device-width : 768px)
+and (max-device-width : 1279px){
+    .navigation-container{
+        font-size: 12px;
+    }
+    .navigation-signin{
+        padding-left: 19px;
+        padding-right: 19px;
+        margin-left: 30px;
+    }
+}
+@media screen 
+and (min-device-width : 1280px)
+and (max-device-width : 100vw){
+    .navigation-container{
+        font-size: 12px;
+        padding-right: 10px;
+    }
+    .navigation-signin{
+        padding-left: 19px;
+        padding-right: 19px;
+        margin-left: 30px;
+    }
+}

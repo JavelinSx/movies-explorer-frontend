@@ -5,4 +5,36 @@
     padding-inline-start: 0;
     padding-left: 10px;
     padding-right: 10px;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+}
+.movies-add{
+    font-size: 10px;
+    font-weight: 500;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 50px;
+    width: 90%;
+    border: 0;
+    background-color: var(--grey-e8);
+    border-radius: 5px;
+}
+@media screen 
+and (min-device-width : 768px)
+and (max-device-width : 1279px){
+    .movies{
+        width: 100%;
+        grid-template-columns: max-content max-content;
+        gap: 20px;
+    }
+}
+@media screen 
+and (min-device-width : 1280px)
+and (max-device-width : 100vw){
+    .movies{
+        width: 100%;
+        grid-template-columns: max-content max-content max-content max-content;
+        gap: 20px;
+    }
 }

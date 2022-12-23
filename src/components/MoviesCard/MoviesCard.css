@@ -39,8 +39,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 15px;
-    padding-bottom: 30px;
+    padding-top: 8px;
+    padding-bottom: 26px;
     border-bottom: 1px solid var(--grey-e8);
 }
 .movie-card__title{
@@ -54,4 +54,26 @@
     font-size: 10px;
     line-height: 12px;
     color: var(--grey);
+}
+
+@media screen 
+and (min-device-width : 768px)
+and (max-device-width : 1279px){
+    .movie-card{
+        width: 100%;
+        padding-bottom: 10px;
+        height: 266px;
+    }
+    .movie-card__image{
+        height: 190px;
+        width: 340px;
+    }
+}
+@media screen 
+and (min-device-width : 1280px)
+and (max-device-width : 100vw){
+    .movie-card__image{
+        height: 150px;
+        width: 270px;
+    }
 }

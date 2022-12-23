@@ -2,5 +2,27 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     height: 74px;
+}
+.header_dark{
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: var(--dark-blue);
+}
+@media screen 
+and (min-device-width : 768px)
+and (max-device-width : 1279px){
+    .header_dark{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+@media screen 
+and (min-device-width : 1280px)
+and (max-device-width : 100vw){
+    .header{
+        padding-left: 60px;
+        padding-right: 60px;
+    }
 }

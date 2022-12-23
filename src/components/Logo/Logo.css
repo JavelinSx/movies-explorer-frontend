@@ -15,8 +15,18 @@
 
 @media screen 
 and (min-device-width : 500px)
-and (max-device-width : 100vw){
+and (max-device-width : 1023px){
     .logo{
         align-items: flex-start;
+    }
+    .logo__header{
+        left: 30px;
+    }
+}
+@media screen 
+and (min-device-width : 1024px)
+and (max-device-width : 100vw){
+    .logo__header{
+        left: 70px;
     }
 }

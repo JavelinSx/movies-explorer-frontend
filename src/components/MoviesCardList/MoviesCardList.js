@@ -5,7 +5,7 @@ import dataMovie from '../../utils/dbData.json'
 
 function MoviesCardList(){
 
-    const [itemToShow, setItemToShow] = useState(5);
+    const [itemToShow, setItemToShow] = useState(8);
     const [dataShow, setDataShow] = useState(dataMovie.slice(0,itemToShow))
 
     const generateCardMovie = () => {

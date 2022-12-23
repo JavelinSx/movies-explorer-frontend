@@ -1,15 +1,17 @@
 import './SearchForm.css';
 import imageBtn from '../../images/search-min.svg';
-
+import FilterCheckBox from '../FilterCheckBox/FilterCheckBox';
 function SearchForm(){
     return(
-        <form className='search-form'>
-            {/* <label className='search-label'>Фильм</label> */}
-            <input className='search-input' placeholder='Фильм'></input>
-            <button className='search-btn'>
-                <img className='search-image' src={imageBtn} alt='иконка поиска'></img>
-            </button>
-        </form>
+        <div className='search-container'>
+            <form className='search-form'>
+                <input className='search-input' placeholder='Фильм'></input>
+                <button className='search-btn'>
+                    <img className='search-image' src={imageBtn} alt='иконка поиска'></img>
+                </button>
+            </form>
+            <FilterCheckBox></FilterCheckBox>
+        </div>
     )
 }
 

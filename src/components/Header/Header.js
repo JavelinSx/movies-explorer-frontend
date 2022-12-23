@@ -1,13 +1,17 @@
 import './Header.css'
-import logoImg from '../../images/logo-min.svg'
+import Logo from '../Logo/Logo'
 import NavBar from '../NavBar/NavBar'
+import Navigation from '../Navigation/Navigation'
 
-function Header(){
+function Header({isLoggin}){
     return(
-        <div className='header'>
-            <img className='logo logo__header' src={logoImg} alt='лого'></img>
-            <NavBar></NavBar>
-        </div>
+        <>
+            <div className={isLoggin ? 'header' : 'header header_dark'}>
+                <Logo></Logo>
+                { isLoggin ? <NavBar></NavBar> : <Navigation></Navigation>}
+            </div>
+        </>
+
     )
 }
 
