@@ -11,6 +11,7 @@
     "react-dom": "^18.2.0",
     "react-input-checkbox": "^1.1.0",
     "react-router-dom": "^6.4.5",
+    "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1"
   },
   "scripts": {

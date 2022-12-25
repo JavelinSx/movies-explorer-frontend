@@ -6,7 +6,7 @@ function Register(){
     return(
         <div className='register'>
             <div className='register__header'>
-                <Logo />
+                <Logo isLoggin={true} />
                 <h1 className='register__title'>Добро пожаловать!</h1>
             </div>
             <Form
@@ -16,42 +16,45 @@ function Register(){
                 textFooter={'Уже зарегистрированы?'}
                 textLink={'Войти'}
             >
-                <label 
-                    htmlFor='register-name'
-                    className='form__label'>
-                    Имя
-                </label>
-                <input 
-                    type='text'
-                    id='register-name'
-                    name='register-ename'
-                    className='form__input'
-                />
-                <span className='form__error-text'></span>
-                <label 
-                    htmlFor='register-email'
-                    className='form__label'>
-                    E-mail
-                </label>
-                <input 
-                    type='email'
-                    id='register-email'
-                    name='register-email'
-                    className='form__input'
-                />
-                <span className='form__error-text'></span>
-                <label 
-                    htmlFor='register-password'
-                    className='form__label'>
-                    Password
-                </label>
-                <input 
-                    type='password'
-                    id='register-password'
-                    name='register-password'
-                    className='form__input'
-                />
-                <span className='form__error-text'></span>
+                <div className='form__input-container'>
+                    <label 
+                        htmlFor='register-name'
+                        className='form__label'>
+                        Имя
+                        <span className='form__error-input'>Error</span>
+                    </label>
+                    <input 
+                        type='text'
+                        id='register-name'
+                        name='register-ename'
+                        className='form__input'
+                    />
+
+                    <label 
+                        htmlFor='register-email'
+                        className='form__label'>
+                        E-mail
+                        <span className='form__error-input'>Error</span>
+                    </label>
+                    <input 
+                        type='email'
+                        id='register-email'
+                        name='register-email'
+                        className='form__input'
+                    />
+                    <label 
+                        htmlFor='register-password'
+                        className='form__label'>
+                        Password
+                        <span className='form__error-input'>Error</span>
+                    </label>
+                    <input 
+                        type='password'
+                        id='register-password'
+                        name='register-password'
+                        className='form__input'
+                    />
+                </div>
             </Form>
         </div>
     )

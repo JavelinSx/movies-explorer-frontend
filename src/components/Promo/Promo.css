@@ -16,22 +16,27 @@
 }
 .promo-title{
     color: var(--white);
-    font-size: 29px;
+    font-style: normal;
     font-weight: 400;
-    line-height: 1.4;
+    font-size: 31px;
+    line-height: 39px;
     text-align: center;
     margin: 0;
     padding-top: 206px;
     padding-bottom: 243px;
+    max-width: 320px;
 }
 
 @media screen 
 and (min-device-width : 768px)
 and (max-device-width : 1279px){
     .promo-title{
-        font-size: 49px;
+        font-weight: 400;
+        font-size: 50px;
+        line-height: 58px;
         padding-top: 318px;
         padding-bottom: 333px;
+        max-width: 730px;
     }
     .promo-logo{
         width: 326px;
@@ -48,9 +53,13 @@ and (max-device-width : 100vw){
         top: 81px;
     }
     .promo-title{
-        font-size: 45px;
+        font-weight: 400;
+        font-size: 50px;
+        line-height: 58px;
+        letter-spacing: -0.04em;
         width: 60%;
         padding-top: 183px;
         padding-bottom: 218px;
+        max-width: 768px;
     }
 }

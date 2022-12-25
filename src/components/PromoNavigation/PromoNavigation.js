@@ -1,18 +1,21 @@
 import './PromoNavigation.css'
-
+import { HashLink } from 'react-router-hash-link';
 function PromoNavigation(){
     return(
-        <ul className='promo-navigation'>
-            <li className='promo-navigation__item'>
-                <a className='promo-navigation__link' href='/'>О проекте</a>
-            </li>
-            <li className='promo-navigation__item'>
-                <a className='promo-navigation__link' href='/'>Технологии</a>
-            </li>
-            <li className='promo-navigation__item'>
-                <a className='promo-navigation__link' href='/'>Студент</a>
-            </li>
-        </ul>
+        <div className='promo-navigation__container'>
+            <ul className='promo-navigation'>
+                <li className='promo-navigation__item'>
+                    <HashLink className='promo-navigation__link' smooth to='/#about-project'>О проекте</HashLink>
+                </li>
+                <li className='promo-navigation__item'>
+                    <HashLink className='promo-navigation__link' smooth to='/#techs'>Технологии</HashLink>
+                </li>
+                <li className='promo-navigation__item'>
+                    <HashLink className='promo-navigation__link' smooth to='/#portfolio'>Студент</HashLink>
+                </li>
+            </ul>
+        </div>
+
 
     )
 }

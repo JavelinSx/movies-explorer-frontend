@@ -2,16 +2,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 260px;
+    height: 100vh;
 }
 
 .login__header{
     padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login__title{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
     margin: 0;
-    padding-top: 50px;
+    padding-top: 88px;
     padding-bottom: 80px;
 }
 
@@ -21,9 +27,13 @@ and (max-device-width : 1023px){
     .login{
         width: 396px;
         align-items: flex-start;
+        padding-top: 232px;
+        padding-bottom: 232px;
+        height: 565px;
     }
     .login__header{
-        padding-top: 232px;
+        align-items: flex-start;
+        padding: 0;
     }
     .login__title{
         padding-bottom: 40px;
@@ -36,6 +46,7 @@ and (max-device-width : 100vw){
     .login{
         width: 396px;
         align-items: flex-start;
+
     }
     .login__header{
         padding-top: 70px;

@@ -3,8 +3,9 @@
     flex-direction: column;
     align-items: center;
     text-align: left;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 70px;
 }
 .portfolio-title{
     margin: 0;
@@ -13,8 +14,7 @@
     align-self: flex-start;
     border-bottom: 1px solid var(--black);
     padding-bottom: 30px;
-    padding-top: 80px;
-    width: 90%;
+    width: 100%;
 }
 .portfolio-name{
     padding-top: 30px;
@@ -25,7 +25,9 @@
 }
 .portfolio-about{
     margin: 0;
-    font-size: 12px;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
     align-self: flex-start;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -33,7 +35,9 @@
 }
 .portfolio-text{
     margin: 0;
-    font-size: 12px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
     font-weight: 500;
     line-height: 1.3;
 }
@@ -47,33 +51,46 @@
 .portfolio-subtitle{
     color: var(--grey);
     align-self: flex-start;
+    font-weight: 400;
     font-size: 14px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    line-height: 20px;
+    padding-bottom: 40px;
 }
 .portfolio-link__github{
     font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
     align-self: flex-start;
     padding-top: 40px;
-    padding-bottom: 60px;
+    padding-bottom: 70px;
 }
 .porfolio-list{
     width: 100%;
     margin: 0;
     padding-inline-start: 0;
     list-style: none;
-    padding-top: 40px;
-    padding-bottom: 90px;
+    padding-bottom: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
 .portfolio-item{
+    background-image: url('../../images/arrow-link.svg');
+    background-repeat: no-repeat;
+    background-position: right;
     width: 100%;
-    padding-top: 18px;
-    padding-bottom: 18px;
+    padding-top: 19px;
+    padding-bottom: 19px;
     border-bottom: 1px solid var(--grey-e8);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+}
+.portfolio-item__link{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
 }
 @media screen 
 and (min-device-width : 768px)
@@ -99,22 +116,28 @@ and (max-device-width : 1279px){
         height: 310px;
     }
     .portfolio-name{
-        font-size: 38px;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 40px;
         padding-top: 66px;
     }
     .portfolio-about{
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
         padding-top: 14px;
     }
     .portfolio-text{
         width: 55%;
         align-self: flex-start;
-        font-size: 13px;
-        line-height: 1.4;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
     }
     .portfolio-link__github{
         position: absolute;
         right: 51px;
-        top: 653px;
+        top: 615px;
         padding: 15px;
         padding-left: 100px;
         padding-right: 100px;
@@ -123,12 +146,13 @@ and (max-device-width : 1279px){
     }
     .portfolio-subtitle{
         font-size: 18px;
+        line-height: 20px;
         padding-top: 80px;
     }
     .portfolio-item{
-        font-size: 24px;
-        padding-top: 30px;
-        padding-bottom: 30px;
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 50px;
     }
 }
 @media screen 

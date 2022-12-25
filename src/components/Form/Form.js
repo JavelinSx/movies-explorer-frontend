@@ -8,12 +8,16 @@ function Form({formName, children, pathToRedirect, textBtn, textFooter, textLink
                 {
                     children
                 }
-                <button className='form__submit-btn'>{textBtn}</button>
-                <div className='form__footer'>
+                
+                <button className='form__submit-btn'>
+                    <span className='form__error-submit'>Вы ввели неправильный логин пароль.</span>
+                    {textBtn}
+                </button>
+            </form>
+            <div className='form__footer'>
                     <p className='form__footer-text'>{textFooter}</p>
                     <Link to={pathToRedirect} className='form__footer-link'>{textLink}</Link>
-                </div>
-            </form>
+            </div>
         </>
     )
 }

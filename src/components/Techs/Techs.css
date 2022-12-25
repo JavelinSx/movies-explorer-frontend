@@ -3,17 +3,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 50px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .techs-header{
     margin: 0;
-    font-size: 16px;
     font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
     align-self: flex-start;
     border-bottom: 1px solid var(--black);
     padding-bottom: 30px;
-    padding-top: 240px;
-    width: 90%;
+    width: 100%;
 }
 .techs-title{
     margin: 0;
@@ -68,7 +71,9 @@ and (max-device-width : 1279px){
         padding-top: 80px;
     }
     .techs-info{
-        width: 60%;
+        width: 65%;
+        font-size: 12px;
+        line-height: 18px;
     }
     .techs-list{
         width: 100%;

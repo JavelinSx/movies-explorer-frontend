@@ -55,17 +55,18 @@
 .navbar__burger-span{
     position: absolute;
     top: 20px;
-    width: 22px;
+    width: 28px;
     background-color: var(--black);
     height: 2px;
     transition: .2s;
 }
 
 .navbar__burger{
-    position: fixed;
-    right: 15px;
+    position: absolute;
+    padding: 0;
+    right: 0;
     top: 15px;
-    width: 42px;
+    width: 30px;
     height: 42px;
     display: flex;
     justify-content: center;
@@ -79,7 +80,7 @@
     content: '';
     position: absolute;
     top: 10px;
-    width: 22px;
+    width: 28px;
     background-color: var(--black);
     height: 2px;
     transition: .2s;
@@ -89,7 +90,7 @@
     content: '';
     position: absolute;
     bottom: 10px;
-    width: 22px;
+    width: 28px;
     background-color: var(--black);
     height: 2px;
     transition: .2s;
@@ -99,7 +100,10 @@
     opacity: 0;
     transition: .2s;
 }
-
+.navbar__burger-animation{
+    position: fixed;
+    right: 22px;
+}
 .navbar__burger-animation::after{
     top: 15px;
     transition: .2s;
@@ -119,20 +123,24 @@
 }
 
 .navbar__wrapper{
+    position: absolute;
     width: 100%;
     height: 100vh;
     transition: .2s;
     visibility: hidden;
+    overflow-x: hidden;
 }
 
 .navbar__wrapper-active{
+    position: fixed;
+    right: 0;
+    width: 100vw;
     transition: .2s;
     background-color: rgba(0, 0, 0, .3);
     visibility: visible;
 }
-
 @media screen 
-and (min-device-width : 1024px)
+and (min-device-width : 1280px)
 and (max-device-width : 100vw){
     .navbar{
         width: auto;
@@ -161,7 +169,6 @@ and (max-device-width : 100vw){
     }
     .navbar__item:last-child{
         margin-top: 0;
-        margin-right: 70px;
         margin-left: 30px;
     }
     .navbar__profile-link{
@@ -172,16 +179,4 @@ and (max-device-width : 100vw){
         background-repeat: no-repeat;
         background-position: 12px;
     }
-}
-@media screen 
-and (min-device-width : 768px)
-and (max-device-width : 1279px){
-    .navbar__burger{
-        right: 41px;
-    }
-}
-@media screen 
-and (min-device-width : 1280px)
-and (max-device-width : 100vw){
-
 }

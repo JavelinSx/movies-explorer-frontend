@@ -7,7 +7,7 @@ function Header({isLoggin}){
     return(
         <>
             <div className={isLoggin ? 'header' : 'header header_dark'}>
-                <Logo></Logo>
+                <Logo isLoggin={isLoggin}></Logo>
                 { isLoggin ? <NavBar></NavBar> : <Navigation></Navigation>}
             </div>
         </>

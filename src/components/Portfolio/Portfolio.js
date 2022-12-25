@@ -1,9 +1,8 @@
 import './Portfolio.css'
-import { Link } from "react-router-dom"
 import mainPhoto from '../../images/main-photo.jpg'
 function Portfolio(){
     return(
-        <div className="portfolio">
+        <div className="portfolio" id='portfolio'>
             <h1 className="portfolio-title">Обо мне</h1>
             <img className="portfolio-avatar" alt="Моё фото" src={mainPhoto}></img>
             <p className="portfolio-name">Никита Зуев</p>
@@ -21,17 +20,17 @@ function Portfolio(){
                 В 2021 году принял решение пройти курсы по веб разработке и найти удалённую работу и хорошую компанию, 
                 с желанием развиваться в этой сфере.
             </p>
-            <Link to={'/'} className='portfolio-link__github'>GitHub</Link>
+            <a href='https://github.com/JavelinSx' className='portfolio-link__github' rel="noopener noreferrer" target="_blank">GitHub</a>
             <span className="portfolio-subtitle">Портфолио</span>
             <ul className="porfolio-list">
                 <li className="portfolio-item">
-                    <Link to={'/'}>Статичный сайт</Link>
+                    <a className='portfolio-item__link' href='https://javelinsx.github.io/russian-travel/' rel="noopener noreferrer" target="_blank">Статичный сайт</a>
                 </li>
                 <li className="portfolio-item">
-                    <Link to={'/'}>Адаптивный сайт</Link>
+                    <a className='portfolio-item__link' href='https://javelinsx.github.io/react-mesto-auth/' rel="noopener noreferrer" target="_blank">Адаптивный сайт</a>
                 </li>
                 <li className="portfolio-item">
-                    <Link to={'/'}>Одностраничное приложение</Link>
+                    <a className='portfolio-item__link' href='http://javelin.nomoredomains.icu/' rel="noopener noreferrer" target="_blank">Одностраничное приложение</a>
                 </li>
             </ul>
         </div>

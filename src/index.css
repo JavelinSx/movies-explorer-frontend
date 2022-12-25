@@ -1,6 +1,15 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
 
+@keyframes rotate-spin {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
 #root{
   --black: #000000;
   --white: #ffffff;
@@ -15,7 +24,10 @@
   --red: #FF3055;
   --blue: #3456F3;
 }
-
+a{
+  text-decoration: none;
+  color: var(--black);
+}
 body {
   font-family: "Inter", "SuisseIntl", "Arial", "Helvetica Neue", sans-serif;
   font-weight: 400;

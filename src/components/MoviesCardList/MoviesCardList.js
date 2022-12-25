@@ -1,25 +1,43 @@
 import './MoviesCardList.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard'
-import dataMovie from '../../utils/dbData.json'
 
-function MoviesCardList(){
 
-    const [itemToShow, setItemToShow] = useState(8);
-    const [dataShow, setDataShow] = useState(dataMovie.slice(0,itemToShow))
+function MoviesCardList({moviesList}){
 
-    const generateCardMovie = () => {
-        console.log(window.screen)
-    }
+    const [itemToShow, setItemToShow] = useState(0);
+    const [dataShow, setDataShow] = useState(moviesList)
+    const [countCard, setCountCard] = useState(0)
+    const [countCardAdd, setCountCardAdd] = useState(2)
+
+    useEffect(() => {
+        if(window.screen.width>=320){
+            setCountCard(5)
+            setCountCardAdd(2)
+        }
+        if(window.screen.width>=768){
+            setCountCard(8)
+            setCountCardAdd(2)
+        }
+        if(window.screen.width>=1280){
+            setCountCard(12)
+            setCountCardAdd(4)
+        }
+    },[])
+
+    useEffect(() => {
+        setDataShow(moviesList.slice(0,countCard))
+        setItemToShow(countCard+countCardAdd)
+    },[countCard, countCardAdd, moviesList])
+
+
     const showMore = () => {
-        setDataShow(dataMovie.slice(0,itemToShow))
-        setItemToShow((item)=>item+5)
-        generateCardMovie()
-        console.log(itemToShow)
+        setItemToShow((item)=>item+countCardAdd)
+        setDataShow(moviesList.slice(0,itemToShow))
     }
     return(
         <>
-            <ul className='movies'>
+            <ul className='movies-card-list'>
                 {
                     dataShow.map((movie)=>
                         <MoviesCard
@@ -27,11 +45,15 @@ function MoviesCardList(){
                             name={movie.nameRU}
                             duration={movie.duration}
                             image={movie.image}
+                            movie={movie}
                         ></MoviesCard>
                     )
                 }
             </ul>
-            <button className='movies-add' onClick={showMore}>Ещё</button>
+            {
+                dataShow.length>3 ? <button className='movies-card-list__add' onClick={showMore}>Ещё</button> : ''
+            }
+            
         </>
     )
 }

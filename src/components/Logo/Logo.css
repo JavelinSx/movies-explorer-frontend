@@ -1,12 +1,13 @@
 .logo{
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.logo__header{
-    position: absolute;
-    left: 20px;
+.logo__header-dark{
+    position: relative;
+    padding-left: 15px;
 }
 
 .logo-img{
@@ -14,19 +15,25 @@
 }
 
 @media screen 
-and (min-device-width : 500px)
-and (max-device-width : 1023px){
+and (min-device-width : 768px)
+and (max-device-width : 1279px){
     .logo{
         align-items: flex-start;
     }
-    .logo__header{
-        left: 30px;
+    .logo__header-dark{
+        position: relative;
+        padding-left: 30px;
     }
+
 }
 @media screen 
-and (min-device-width : 1024px)
+and (min-device-width : 1280px)
 and (max-device-width : 100vw){
-    .logo__header{
-        left: 70px;
+    .logo{
+        position:relative;
+    }
+    .logo__header-dark{
+        position: relative;
+        padding-left: 60px;
     }
 }

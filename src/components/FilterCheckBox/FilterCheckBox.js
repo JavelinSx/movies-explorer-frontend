@@ -3,10 +3,10 @@ import './FilterCheckBox.css';
 function FilterCheckBox(){
     return(
         <>
-        <label className='movie-filter__label'>
+        <label className='filter-checkbox__label'>
             Короткометражки
-            <input className='movie-filter' type='checkbox' role='switch'></input>
-            <div className='movie-filter__switch'></div>
+            <input className='filter-checkbox' type='checkbox' role='switch'></input>
+            <div className='filter-checkbox__switch'></div>
         </label>
 
         </>
