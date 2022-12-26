@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard'
 
 
-function MoviesCardList({moviesList}){
+function MoviesCardList({moviesList, btnLikeClassActive, btnLikeClassDisable, parentCall}){
 
     const [itemToShow, setItemToShow] = useState(0);
     const [dataShow, setDataShow] = useState(moviesList)
@@ -35,6 +35,7 @@ function MoviesCardList({moviesList}){
         setItemToShow((item)=>item+countCardAdd)
         setDataShow(moviesList.slice(0,itemToShow))
     }
+
     return(
         <>
             <ul className='movies-card-list'>
@@ -42,10 +43,10 @@ function MoviesCardList({moviesList}){
                     dataShow.map((movie)=>
                         <MoviesCard
                             key={movie.id}
-                            name={movie.nameRU}
-                            duration={movie.duration}
-                            image={movie.image}
                             movie={movie}
+                            parentCall={parentCall}
+                            btnLikeClassActive={btnLikeClassActive}
+                            btnLikeClassDisable={btnLikeClassDisable}
                         ></MoviesCard>
                     )
                 }

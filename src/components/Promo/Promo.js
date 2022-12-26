@@ -1,12 +1,23 @@
 import './Promo.css'
-import promoLogo from '../../images/prakticum-logo-min.svg'
-import PromoNavigation from '../PromoNavigation/PromoNavigation'
+import { HashLink } from 'react-router-hash-link';
 function Promo(){
     return(
         <div className='promo'>
-            <img className='promo-logo' src={promoLogo} alt='лого-практикума'></img>
             <h1 className='promo-title'>Учебный проект студента факультета Веб-разработки.</h1>
-            <PromoNavigation></PromoNavigation>
+            <nav className='promo-navigation'>
+                <ul className='promo-navigation__list'>
+                    <li className='promo-navigation__item'>
+                        <HashLink className='promo-navigation__link' smooth to='/#about-project'>О проекте</HashLink>
+                    </li>
+                    <li className='promo-navigation__item'>
+                        <HashLink className='promo-navigation__link' smooth to='/#techs'>Технологии</HashLink>
+                    </li>
+                    <li className='promo-navigation__item'>
+                        <HashLink className='promo-navigation__link' smooth to='/#portfolio'>Студент</HashLink>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
     )
 }

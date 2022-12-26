@@ -3,9 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: calc(100vw - 20px);
-    min-height: 266px;
-    max-width: 1140px;
+    min-height: 169px;
 }
 .preloader-container{
     width: 50px;
@@ -18,7 +16,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: var(--dark-blue);
     border-radius: 50%;
 }
 .preloader-spin::after{
@@ -34,16 +31,16 @@
     background-position: center;
 }
 @media screen 
-and (min-device-width : 768px)
-and (max-device-width : 1279px){
+and (min-width : 768px)
+and (max-width : 1279px){
     .preloader{
-        width: calc(100vw - 60px);
+        min-height: 548px;
     }
 }
 @media screen 
-and (min-device-width : 1280px)
-and (max-device-width : 100vw){
+and (min-width : 1280px)
+and (max-width : 100vw){
     .preloader{
-        width: calc(100vw - 140px);
+        min-height: 224px;
     }
 }

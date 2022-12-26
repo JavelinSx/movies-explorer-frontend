@@ -22,7 +22,7 @@ function SavedMovies(){
         <div className="movies">
             <Header isLoggin={true}></Header>
             <SearchForm></SearchForm>
-            {isLoading ? <Preloader /> : <MoviesCardList moviesList={savedMovies}/>}
+            {isLoading ? <Preloader /> : <MoviesCardList moviesList={savedMovies} parentCall={'saved'} btnLikeClassActive='movie-card__btn' btnLikeClassDisable='movie-card__btn movie-card__btn-close'/>}
             <Footer></Footer>
         </div>
     )

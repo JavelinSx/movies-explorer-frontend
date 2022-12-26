@@ -14,7 +14,6 @@ function Main(){
             <AboutProject></AboutProject>
             <Techs></Techs>
             <AboutMe></AboutMe>
-            <Portfolio></Portfolio>
             <Footer addClassPadding={true}></Footer>
         </div>
     )

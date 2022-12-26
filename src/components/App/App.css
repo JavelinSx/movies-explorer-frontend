@@ -2,9 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1280px;
-    min-width: 320px;
-    align-items: stretch;
+    background-color: var(--black20);
 }
 
 

@@ -4,9 +4,31 @@
     align-items: center;
     justify-content: space-between;
     height: 74px;
-    width: 100%;
     position: relative;
+    background-color: inherit;
+    min-width: 280px;
 }
-.header_dark{
-    background-color: var(--dark-blue);
+.header__dark{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+@media screen 
+and (min-width : 768px)
+and (max-width : 1279px){
+    .header{
+        padding: 0;
+        width: 100%;
+    }
+    .header__dark{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media screen 
+and (min-width : 1280px)
+and (max-width : 100vw){
+    .header{
+        padding: 0;
+        width: 100%;
+    }
 }

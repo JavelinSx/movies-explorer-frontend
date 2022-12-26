@@ -21,7 +21,7 @@ function Movies(){
         <div className="movies">
             <Header isLoggin={true}></Header>
             <SearchForm></SearchForm>
-            {isLoading ? <Preloader /> : <MoviesCardList moviesList={dataMovie}/>}
+            {isLoading ? <Preloader /> : <MoviesCardList moviesList={dataMovie} parentCall={'list'} btnLikeClassActive='movie-card__btn movie-card__btn-active' btnLikeClassDisable='movie-card__btn'/>}
             <Footer></Footer>
         </div>
     )

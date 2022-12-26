@@ -1,17 +1,24 @@
 .profile{
-    padding-left: 30px;
-    padding-right: 30px;
     text-align: center;
+    color: var(--white);
+}
+.profile-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    width: 280px;
+    margin-top: 12px;
 }
 .profile__text{
     font-weight: 500;
     font-size: 11px;
     line-height: 13px;
-    color: var(--black);
 }
 .profile__title{
     margin: 0;
-    padding-top: 70px;
+    padding-top: 87px;
     padding-bottom: 80px;
     font-weight: 500;
     font-size: 24px;
@@ -22,12 +29,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 55vh;
+    height: 100%;
+    width: 260px;
 }
 .profile__form-label{
     text-align: left;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 23px;
     border-bottom: 1px solid var(--grey-e8)
     
 }
@@ -37,6 +45,7 @@
 }
 
 .profile__form-input{
+    color: var(--white);
     background-color: inherit;
     font-weight: 400;
     font-size: 11px;
@@ -54,7 +63,9 @@
     display: flex;
     flex-direction: column;
 }
+
 .profile__btn{
+    color: var(--white);
     cursor: pointer;
     font-family: inherit;
     border: none;
@@ -71,20 +82,55 @@
 }
 .profile__btn-edit{
     margin-bottom: 16px;
+    visibility: visible;
+}
+.profile__btn-edit-hide{
+    visibility: hidden;
 }
 .profile__btn-exit{
     font-weight: 500;
     color: var(--red);
+    padding-bottom: 51px;
+    visibility: visible;
+}
+.profile__btn-exit-hide{
+    visibility: hidden;
+}
+.profile__btn-save{
+    color: var(--white);
+    cursor: pointer;
+    display: block;
+    height: 45px;
+    background-color: var(--blue);
+    border-radius: 3px;
+    border: none;
+    margin-bottom: 40px;
+    transition: .2s;
+
+}
+.profile__btn-save:hover{
+    opacity: .7;
+    transition: .2s;
+}
+.profile__btn-save-hide{
+    display: none;
+
 }
 
 @media screen 
-and (min-device-width : 768px)
-and (max-device-width : 1024px){
+and (min-width : 768px)
+and (max-width : 1279px){
     .profile{
         padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .profile-container{
+        width: 700px;
+        margin-top: 12px;
     }
     .profile__form{
-        height: 26vh;
+        height: 100%;
         width: 410px;
     }
     .profile__title{
@@ -95,24 +141,41 @@ and (max-device-width : 1024px){
         font-size: 13px;
         line-height: 16px; 
     }
+    .profile__btn-edit{
+        margin-top: 210px;
+    }
+    .profile__btn-save{
+        margin-top: 210px;
+    }
 }
 
 @media screen 
-and (min-device-width : 1024px)
-and (max-device-width : 100vw){
+and (min-width : 1280px)
+and (max-width : 100vw){
     .profile{
         padding: 0;
+        display: flex;
+        flex-direction: column;
     }
     .profile__form{
-        height: 45vh;
         width: 410px;
     }
     .profile__title{
         padding-top: 74px;
-        padding-bottom: 123px;
+        padding-bottom: 126px;
     }
     .profile__btn{
         font-size: 13px;
         line-height: 16px; 
+    }
+    .profile-container{
+        width: 1140px;
+        margin-top: 0;
+    }
+    .profile__btn-exit{
+        padding-bottom: 70px;
+    }
+    .profile__btn-save{
+        margin-top: 190px;
     }
 }

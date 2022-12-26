@@ -12,21 +12,30 @@
 
 #root{
   --black: #000000;
+  --black20: #202020;
+  --black22: #222222;
+  --black27: #272727;
+  --black30: #303030;
+  --black31: #313131;
+
   --white: #ffffff;
-  --grey: #A0A0A0;
-  --grey-a: #AAAAAA;
-  --grey-f5: #F5F5F5;
-  --grey-f9: #F9F9F9;
+  --grey: #8B8B8B;
+  --grey-2f: #2F2F2F;
+  --grey-a: #A0A0A0;
+  --grey-8b: #8B8B8B;
+  --grey-42: #424242;
+  --grey-50: #505050;
   --grey-e6: #E6E6E6;
-  --grey-e8: #E8E8E8;
-  --green: #2BE080;
+  --grey-da: #DADADA;
+  --green: #3DDC84;
   --dark-blue: #073042;
-  --red: #FF3055;
-  --blue: #3456F3;
+  --red: #EE3465;
+  --blue: #4285F4;
+
 }
 a{
   text-decoration: none;
-  color: var(--black);
+  color: var(--white);
 }
 body {
   font-family: "Inter", "SuisseIntl", "Arial", "Helvetica Neue", sans-serif;

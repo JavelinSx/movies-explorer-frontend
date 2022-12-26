@@ -21,50 +21,90 @@
     color: var(--grey);
 }
 .search-input{
+    color: var(--white);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
     padding: 0;
     padding-left: 16px;
     outline: none;
-    border: 1px solid var(--grey);
-    border-radius: 28px;
-    height: 48px;
+    border: none;
+    border-radius: 9px;
+    background-color: rgba(0, 0, 0, 0.08);
+    height: 72px;
     width: 100%;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 .search-btn{
     padding: 0;
     position: absolute;
-    right: 20px;
-    top: 68px;
+    right: 28px;
+    top: 78px;
     background-color: inherit;
     border: none;
+    transition: .2s;
+}
+.search-btn:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: .2s;
 }
 
 @media screen 
-and (min-device-width : 768px)
-and (max-device-width : 1279px){
-    .search-form{
-        padding-top: 60px;
-    }
-    .search-btn{
-        right: 20px;
-        top: 67px;
-    }
-
-}
-@media screen 
-and (min-device-width : 1280px)
-and (max-device-width : 100vw){
+and (min-width : 768px)
+and (max-width : 1279px){
     .search-container{
+        width: 708px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-direction: row;
-        padding-top: 80px;
-        padding-bottom: 165px;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        background-color: var(--black22);
+        border-radius: 9px;
     }
     .search-form{
+        background-color: inherit;
+        border-radius: 9px;
         padding-top: 0;
     }
     .search-btn{
-        top:8px;
+        top: 20px;
+    }
+    .search-input{
+        width: 484px;
+        margin-right: 0;
+        background-color: inherit;
+    }
+
+}
+@media screen 
+and (min-width : 1280px)
+and (max-width : 100vw){
+    .search-container{
+        width: 1140px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        background-color: var(--black22);
+        border-radius: 9px;
+    }
+    .search-form{
+        background-color: inherit;
+        border-radius: 9px;
+        padding-top: 0;
+    }
+    .search-btn{
+        top: 20px;
+    }
+    .search-input{
+        min-width: 906px;
+        margin-right: 0;
+        background-color: inherit;
     }
 }
