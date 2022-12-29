@@ -6,7 +6,7 @@
     height: 74px;
     position: relative;
     background-color: inherit;
-    min-width: 280px;
+    width: 100%;
 }
 .header__dark{
     padding-left: 15px;

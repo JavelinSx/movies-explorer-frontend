@@ -3,12 +3,17 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 100vh;
-    min-width: 260px;
 }
 
 .login-container{
+    width: calc(var(--w320-396) - 60px);
+    padding-top: 56px;
+    padding-left: 30px;
+    padding-right: 30px;
     height: 100%;
+    max-width: 456px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,15 +37,13 @@
 @media screen 
 and (min-width : 768px)
 and (max-width : 1279px){
-    .login{
-        width: 396px;
-    }
     .login-container{
-        height: 565px;
         align-items: flex-start;
+        height: 565px;
     }
     .login__header{
         align-items: flex-start;
+        align-self: flex-start;
         padding: 0;
     }
     .login__title{
@@ -51,16 +54,13 @@ and (max-width : 1279px){
 @media screen 
 and (min-width : 1280px)
 and (max-width : 100vw){
-    .login{
-        width: 396px;
-        align-items: flex-start;
-    }
     .login-container{
-        height: 565px;
         align-items: flex-start;
+        height: 565px;
     }
     .login__header{
         align-items: flex-start;
+        align-self: flex-start;
     }
     .login__title{
         padding-top: 40px;

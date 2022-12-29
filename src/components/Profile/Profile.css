@@ -1,6 +1,10 @@
 .profile{
-    text-align: center;
     color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 .profile-container{
     height: 100vh;

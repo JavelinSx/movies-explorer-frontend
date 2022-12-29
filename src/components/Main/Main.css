@@ -1,11 +1,11 @@
 .main{
-    max-width: 320px;
+    width: var(--w320-768);
 }
 @media screen 
 and (min-width : 768px)
 and (max-width : 1279px){
     .main{
-        max-width: 768px
+        width: var(--w768-1280);
     }
 }
 @media screen 

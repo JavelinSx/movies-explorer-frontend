@@ -18,17 +18,17 @@
     justify-content: flex-start;
     background-color: var(--white);
     visibility: hidden;
-    transition: .5s;
+    transition: .2s;
     max-width: 520px;
     background-color: var(--black20);
-    z-index: 2;
+    z-index: 3;
 }
 
 .navbar__menu-active{
     right: 0;
     visibility: visible;
-    transition: .5s;
-    z-index: 2;
+    transition: .2s;
+    z-index: 3;
 }
 
 .navbar__item{
@@ -93,7 +93,7 @@
     cursor: pointer;
     background-color: inherit;
     border: none;
-    z-index: 3;
+    z-index: 4;
     transition: .2s;
 }
 .navbar__burger:hover{
@@ -148,6 +148,7 @@
     transition: .2s;
     visibility: hidden;
     overflow-x: hidden;
+    z-index: 2;
 }
 
 .navbar__wrapper-active{
@@ -157,6 +158,7 @@
     transition: .2s;
     background-color: rgba(0, 0, 0, .3);
     visibility: visible;
+    z-index: 2;
 }
 @media screen 
 and (min-width : 768px)

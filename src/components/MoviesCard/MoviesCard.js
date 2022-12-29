@@ -1,5 +1,5 @@
 import './MoviesCard.css';
-import { useEffect, useState} from 'react';
+import { useState } from 'react';
 import { urlApi } from '../../utils/constant.js';
 
 function MoviesCard({movie, btnLikeClassActive, btnLikeClassDisable, parentCall}){

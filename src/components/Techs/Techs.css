@@ -6,8 +6,8 @@
     align-items: center;
     padding-top: 70px;
     padding-bottom: 70px;
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: var(--pd18-50);
+    padding-right: var(--pd18-50);
 }
 .techs-header{
     margin: 0;
@@ -63,8 +63,8 @@ and (max-width : 1279px){
     .techs{
         padding-top: 0;
         padding-bottom: 90px;
-        padding-right: 50px;
-        padding-left: 50px;
+        padding-right: var(--pd50-70);
+        padding-left: var(--pd50-70);
     }
     .techs-header{
         font-size: 20px;

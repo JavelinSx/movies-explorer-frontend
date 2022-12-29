@@ -1,8 +1,8 @@
 .about-me{
     position: relative;
     padding-top: 70px;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: var(--pd14-50);
+    padding-right: var(--pd14-50);
     color: var(--white);
 }
 .about-me__title{
