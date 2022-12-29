@@ -1,17 +1,18 @@
 .main{
-    width: var(--w320-768);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1280px;
 }
 @media screen 
 and (min-width : 768px)
 and (max-width : 1279px){
     .main{
-        width: var(--w768-1280);
     }
 }
 @media screen 
 and (min-width : 1280px)
 and (max-width : 100vw){
     .main{
-        max-width: 1280px
     }
 }

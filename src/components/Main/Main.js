@@ -7,14 +7,14 @@ import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 function Main(){
     return(
-        <div className='main'>
+        <section className='main'>
             <Header isLoggin={false}></Header>
             <Promo></Promo>
             <AboutProject></AboutProject>
             <Techs></Techs>
             <AboutMe></AboutMe>
             <Footer addClassPadding={true}></Footer>
-        </div>
+        </section>
     )
 }
 

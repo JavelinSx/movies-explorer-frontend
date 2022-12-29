@@ -4,10 +4,6 @@
     align-items: center;
 }
 
-.logo__header-dark{
-
-}
-
 .logo-img{
     width: 38px;
 }
@@ -18,9 +14,6 @@ and (max-width : 1279px){
     .logo{
         align-items: flex-start;
     }
-    .logo__header-dark{
-        padding-left: 30px;
-    }
 
 }
 @media screen 
@@ -28,8 +21,5 @@ and (min-width : 1280px)
 and (max-width : 100vw){
     .logo{
         position:relative;
-    }
-    .logo__header-dark{
-        padding-left: 70px;
     }
 }
