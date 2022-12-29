@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 74px;
+    min-height: 74px;
     position: relative;
     background-color: inherit;
     width: 90%;
