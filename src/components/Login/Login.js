@@ -4,7 +4,7 @@ import Logo from '../Logo/Logo';
 
 function Login(){
     return (
-        <div className='login'>
+        <section className='login'>
             <div className='login-container'>
                 <div className='login__header'>
                     <Logo isLoggin={true}/>
@@ -25,6 +25,7 @@ function Login(){
                             <span className='form__error-input'>Error</span>
                         </label>
                         <input 
+                            required
                             type='email'
                             id='login-email'
                             name='login-email'
@@ -38,6 +39,7 @@ function Login(){
                             <span className='form__error-input'>Error</span>
                         </label>
                         <input 
+                            required
                             type='password'
                             id='login-password'
                             name='login-password'
@@ -46,8 +48,7 @@ function Login(){
                     </div>
                 </Form>
             </div>
-            
-        </div>
+        </section>
     )
 }
 

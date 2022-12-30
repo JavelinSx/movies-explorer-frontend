@@ -17,7 +17,6 @@ function Promo(){
                     </li>
                 </ul>
             </nav>
-
         </div>
     )
 }

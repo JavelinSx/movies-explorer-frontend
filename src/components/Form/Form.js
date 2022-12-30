@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 import './Form.css';
 
 function Form({formName, children, pathToRedirect, textBtn, textFooter, textLink}){
+    const handleSubmit = (evt) => {
+        evt.preventDefault()
+    }
     return(
         <>
-            <form className={`form ${formName}`}>
+            <form className={`form ${formName}`} onSubmit={handleSubmit}>
                 {
                     children
                 }

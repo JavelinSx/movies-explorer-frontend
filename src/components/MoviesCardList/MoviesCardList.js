@@ -38,8 +38,12 @@ function MoviesCardList({moviesList, btnLikeClassActive, btnLikeClassDisable, pa
 
     return(
         <>
+            <div className={dataShow.length === 0 ? 'movies-card-list__fill-none movies-card-list__fill-none-active' : 'movies-card-list__fill-none'}>
+                Нет сохранённых фильмов
+            </div>
             <ul className='movies-card-list'>
                 {
+                    
                     dataShow.map((movie)=>
                         <MoviesCard
                             key={movie.id}
@@ -54,7 +58,6 @@ function MoviesCardList({moviesList, btnLikeClassActive, btnLikeClassDisable, pa
             {
                 dataShow.length>3 ? <button className='movies-card-list__add' onClick={showMore}>Ещё</button> : ''
             }
-            
         </>
     )
 }

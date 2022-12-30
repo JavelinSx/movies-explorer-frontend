@@ -22,8 +22,7 @@ function AboutMe(){
                 с желанием развиваться в этой сфере.
             </p>
             <Portfolio></Portfolio>
-        </div>
-        
+        </div> 
     )
 }
 export default AboutMe

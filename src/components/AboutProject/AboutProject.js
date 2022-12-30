@@ -36,7 +36,6 @@ function AboutProject(){
                     <span className='about-project__timeline-text'>Front-end</span>
                 </li>
             </ul>
-
         </div>
     )
 }

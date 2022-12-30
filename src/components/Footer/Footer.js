@@ -3,7 +3,7 @@ import './Footer.css'
 
 function Footer({addClassPadding}){
     return(
-        <div className={addClassPadding ? 'footer footer-main' : 'footer'}>
+        <footer className={addClassPadding ? 'footer footer-main' : 'footer'}>
             <span className='footer-title'>Учебный проект Яндекс.Практикум х BeatFilm.</span>
             <div className='footer-links__container'>
                 <ul className='footer-links'>
@@ -16,8 +16,7 @@ function Footer({addClassPadding}){
                 </ul>
                 <span className='footer-date'>&#169; {new Date().getFullYear()}</span>
             </div>
-
-        </div>
+        </footer>
     )
 }
 

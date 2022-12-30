@@ -9,6 +9,7 @@
     justify-content: center;
     justify-items: center;
     z-index: 1;
+    height: 100%;
 }
 .movies-card-list__add{
     color: var(--white);
@@ -22,6 +23,18 @@
     background-color: var(--grey-2f);
     border-radius: 5px;
     align-self: center;
+}
+.movies-card-list__fill-none{
+    color: var(--white);
+    display: none;
+}
+.movies-card-list__fill-none-active{
+    display: block;
+    padding-top: 70px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 @media screen 
 and (min-width : 768px)

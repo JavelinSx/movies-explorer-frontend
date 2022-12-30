@@ -19,12 +19,12 @@ function SavedMovies(){
     const savedMovies = dataMovie.filter(movie => movie.isSaved)
     
     return(
-        <div className={isLoading ? 'movies movies__preload' : 'movies'}>
+        <section className={isLoading || savedMovies.length===0 ? 'movies movies__preload' : 'movies'}>
             <Header isLoggin={true}></Header>
             <SearchForm></SearchForm>
             {isLoading ? <Preloader /> : <MoviesCardList moviesList={savedMovies} parentCall={'saved'} btnLikeClassActive='movie-card__btn' btnLikeClassDisable='movie-card__btn movie-card__btn-close'/>}
             <Footer></Footer>
-        </div>
+        </section>
     )
 }
 

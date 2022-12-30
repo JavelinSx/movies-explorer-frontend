@@ -5,15 +5,16 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100%;
 }
 
 .register-container{
-    width: calc(var(--w320-396) - 60px);
+    width: 80%;
     padding-top: 56px;
     padding-left: 30px;
     padding-right: 30px;
     height: 100%;
-    max-width: 456px;
+    max-width: 396px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,10 +39,7 @@
 @media screen 
 and (min-width : 768px)
 and (max-width : 1279px){
-    .register{
-        align-items: flex-start;
-        padding: 0;
-    }
+
     .register-container{
         height: 565px;
         align-items: flex-start;
@@ -59,9 +57,7 @@ and (max-width : 1279px){
 @media screen 
 and (min-width : 1279px)
 and (max-width : 100vw){
-    .register{
-        align-items: flex-start;
-    }
+
     .register-container{
         height: 565px;
         align-items: flex-start;

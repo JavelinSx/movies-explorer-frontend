@@ -4,7 +4,7 @@ import Logo from '../Logo/Logo';
 
 function Register(){
     return(
-        <div className='register'>
+        <section className='register'>
             <div className='register-container'>
                 <div className='register__header'>
                     <Logo isLoggin={true} />
@@ -25,6 +25,7 @@ function Register(){
                             <span className='form__error-input'>Error</span>
                         </label>
                         <input 
+                            required
                             type='text'
                             id='register-name'
                             name='register-ename'
@@ -38,6 +39,7 @@ function Register(){
                             <span className='form__error-input'>Error</span>
                         </label>
                         <input 
+                            required
                             type='email'
                             id='register-email'
                             name='register-email'
@@ -50,6 +52,7 @@ function Register(){
                             <span className='form__error-input'>Error</span>
                         </label>
                         <input 
+                            required
                             type='password'
                             id='register-password'
                             name='register-password'
@@ -58,7 +61,7 @@ function Register(){
                     </div>
                 </Form>
             </div>
-        </div>
+        </section>
     )
 }
 
