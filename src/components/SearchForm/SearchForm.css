@@ -50,6 +50,12 @@
     height: 72px;
     width: 100%;
     max-width: none;
+    transition: .2s;
+}
+.search-input:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: .2s;
 }
 .search-btn{
     padding: 0;
