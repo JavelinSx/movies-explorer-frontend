@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 100vw;
+    min-width: 100%;
     padding-top: 79px;
 }
 .preloader-container{

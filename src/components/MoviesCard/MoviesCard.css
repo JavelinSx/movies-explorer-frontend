@@ -94,7 +94,7 @@ and (max-width : 767px){
     .movie-card{
         max-height: 134px;
         position: relative;
-        width: calc(var(--w768-1280) - 60px);
+        width: 100%;
         flex-direction: row-reverse;
         justify-content: space-between;
         margin-bottom: 40px;
@@ -127,7 +127,7 @@ and (max-width : 1279px){
     .movie-card{
         max-height: 134px;
         position: relative;
-        width: calc(var(--w768-1280) - 60px);
+        width: 100%;
         flex-direction: row-reverse;
         justify-content: space-between;
         margin-bottom: 40px;
