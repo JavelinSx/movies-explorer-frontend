@@ -1,5 +1,5 @@
 import './Promo.css'
-
+import { HashLink } from 'react-router-hash-link';
 function Promo(){
     return(
         <div className='promo'>
@@ -7,13 +7,13 @@ function Promo(){
             <nav className='promo-navigation'>
                 <ul className='promo-navigation__list'>
                     <li className='promo-navigation__item'>
-                        <a className='promo-navigation__link' smooth href='/#about-project'>О проекте</a>
+                        <HashLink className='promo-navigation__link'  to='/#about-project'>О проекте</HashLink>
                     </li>
                     <li className='promo-navigation__item'>
-                        <a className='promo-navigation__link' smooth href='/#techs'>Технологии</a>
+                        <HashLink className='promo-navigation__link'  to='/#techs'>Технологии</HashLink>
                     </li>
                     <li className='promo-navigation__item'>
-                        <a className='promo-navigation__link' smooth href='/#portfolio'>Студент</a>
+                        <HashLink className='promo-navigation__link'  to='/#about-me'>Студент</HashLink>
                     </li>
                 </ul>
             </nav>

@@ -3,7 +3,7 @@ import mainPhoto from '../../images/main-photo.jpg'
 import Portfolio from '../Portfolio/Portfolio'
 function AboutMe(){
     return(
-        <div className='about-me'>
+        <div className='about-me' id='about-me'>
             <h1 className="about-me__title">Обо мне</h1>
             <img className="about-me__avatar" alt="Моё фото" src={mainPhoto}></img>
             <p className="about-me__name">Никита Зуев</p>

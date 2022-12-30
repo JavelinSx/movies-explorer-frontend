@@ -44,10 +44,12 @@
     font-size: 12px;
     line-height: 15px;
     text-align: center;
-    transition: .5s;
+    transition: .2s;
 }
 .form__submit-btn:hover{
-    opacity: .8;
+    cursor: pointer;
+    transition: .2s;
+    opacity: .7;
 }
 
 .form__error-input{
@@ -62,7 +64,8 @@
 
 .form__error-submit{
     position: absolute;
-    top: -26px;
+    text-align: center;
+    top: calc(100% - 18%);
     left: 0;
     right: 0;
     font-weight: 400;

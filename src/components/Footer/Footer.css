@@ -36,6 +36,12 @@
     font-size: 12px;
     line-height: 15px;
     padding-bottom: 12px;
+    transition: .2s;
+}
+.footer-links__item:hover{
+    opacity: .7;
+    cursor: pointer;
+    transition: .2s;
 }
 .footer-links__item:last-child{
     padding-bottom: 0;

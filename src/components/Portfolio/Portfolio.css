@@ -23,6 +23,12 @@
     align-self: flex-start;
     padding-top: 40px;
     padding-bottom: 70px;
+    transition: .2s;
+}
+.portfolio-link__github:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: .2s;
 }
 .porfolio-list{
     width: 100%;
@@ -45,6 +51,12 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 28px;
+    transition: .2s;
+}
+.portfolio-item:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: .2s;
 }
 .portfolio-item:last-child{
     border: none;

@@ -8,6 +8,7 @@
 }
 .navigation-signup{
     color: var(--white);
+    transition: .2s;
 }
 .navigation-signin{
     color: var(--black);
@@ -18,7 +19,18 @@
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
+    transition: .2s;
 
+}
+.navigation-signin:hover{
+    opacity: .7;
+    cursor: pointer;
+    transition: .2s;
+}
+.navigation-signup:hover{
+    opacity: .7;
+    cursor: pointer;
+    transition: .2s;
 }
 @media screen 
 and (min-width : 768px)

@@ -49,6 +49,12 @@
     background-color: var(--black30);
     padding: 5px 15px 7px 15px;
     border-radius: 6px;
+    transition: .2s;
+}
+.promo-navigation__item:hover{
+    opacity: .7;
+    transition: .2s;
+    cursor: pointer;
 }
 .promo-navigation__item:last-child{
     margin-right: 0;

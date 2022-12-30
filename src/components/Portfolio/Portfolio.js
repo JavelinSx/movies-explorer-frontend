@@ -2,7 +2,7 @@ import './Portfolio.css'
 import iconArrow from '../../images/arrow-link.svg'
 function Portfolio(){
     return(
-        <div className="portfolio" id='portfolio'>
+        <div className="portfolio">
             <a href='https://github.com/JavelinSx' className='portfolio-link__github' rel="noopener noreferrer" target="_blank">GitHub</a>
             <span className="portfolio-subtitle">Портфолио</span>
             <ul className="porfolio-list">

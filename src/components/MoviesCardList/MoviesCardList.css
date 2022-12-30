@@ -23,6 +23,12 @@
     background-color: var(--grey-2f);
     border-radius: 5px;
     align-self: center;
+    transition: .2s;
+}
+.movies-card-list__add:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: .2s;
 }
 .movies-card-list__fill-none{
     color: var(--white);
