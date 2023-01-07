@@ -1,8 +1,29 @@
 import './Register.css'
 import Form from '../Form/Form';
 import Logo from '../Logo/Logo';
+import { useState } from 'react';
 
-function Register(){
+function Register({handleRegister}){
+    const [userName, setUserName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [userPass, setUserPass] = useState('')
+    const handleInputName = (evt) => {
+        setUserName(evt.target.value)
+    }
+    const handleInputEmail = (evt) => {
+        setUserEmail(evt.target.value)
+    }
+    const handleInputPassword = (evt) => {
+        setUserPass(evt.target.value)
+    }
+    const handleSubmitRegister = (evt) => {
+        evt.preventDefault()
+        handleRegister({
+            name: userName,
+            email: userEmail,
+            password: userPass,
+        })
+    }
     return(
         <section className='register'>
             <div className='register-container'>
@@ -16,6 +37,7 @@ function Register(){
                     textBtn={'Зарегистрироваться'}
                     textFooter={'Уже зарегистрированы?'}
                     textLink={'Войти'}
+                    onSubmit={handleSubmitRegister}                    
                 >
                     <div className='form__input-container'>
                         <label 
@@ -28,8 +50,9 @@ function Register(){
                             required
                             type='text'
                             id='register-name'
-                            name='register-ename'
+                            name='name'
                             className='form__input'
+                            onChange={handleInputName}
                         />
 
                         <label 
@@ -42,8 +65,9 @@ function Register(){
                             required
                             type='email'
                             id='register-email'
-                            name='register-email'
+                            name='email'
                             className='form__input'
+                            onChange={handleInputEmail}
                         />
                         <label 
                             htmlFor='register-password'
@@ -55,8 +79,9 @@ function Register(){
                             required
                             type='password'
                             id='register-password'
-                            name='register-password'
+                            name='password'
                             className='form__input'
+                            onChange={handleInputPassword}
                         />
                     </div>
                 </Form>

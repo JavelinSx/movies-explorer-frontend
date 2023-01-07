@@ -4,7 +4,7 @@ import { useState } from 'react'
 function Profile(){
     const [enableEdit, setEnableEdit] = useState(false)
 
-    const handleClickEditProfile = (evt) => {
+    const handleEditProfile = (evt) => {
         evt.preventDefault()
         setEnableEdit(!enableEdit)
     }
@@ -38,7 +38,7 @@ function Profile(){
                     </form>
                     <div className='profile__btn-container'>
                         <button className={enableEdit ? 'profile__btn-save' : 'profile__btn-save profile__btn-save-hide'} form='form-profile' >Сохранить</button>
-                        <button className={enableEdit ? 'profile__btn-edit-hide' : 'profile__btn-edit profile__btn'} onClick={handleClickEditProfile}>Редактировать</button>
+                        <button className={enableEdit ? 'profile__btn-edit-hide' : 'profile__btn-edit profile__btn'} onClick={handleEditProfile}>Редактировать</button>
                         <button className={enableEdit ? 'profile__btn-exit-hide' : 'profile__btn-exit profile__btn'}>Выйти из аккаунта</button>
                     </div>
                 </div>
