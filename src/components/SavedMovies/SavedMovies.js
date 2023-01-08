@@ -6,7 +6,7 @@ import Preloader from '../Preloader/Preloader'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import dataMovie from '../../utils/dbData.json'
 
-function SavedMovies(){
+function SavedMovies({loggedIn}){
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -20,7 +20,7 @@ function SavedMovies(){
     
     return(
         <section className={isLoading || savedMovies.length===0 ? 'movies movies__preload' : 'movies'}>
-            <Header isLoggin={true}></Header>
+            <Header loggedIn={loggedIn}></Header>
             <SearchForm></SearchForm>
             {isLoading ? <Preloader /> : <MoviesCardList moviesList={savedMovies} parentCall={'saved'} btnLikeClassActive='movie-card__btn' btnLikeClassDisable='movie-card__btn movie-card__btn-close'/>}
             <Footer></Footer>

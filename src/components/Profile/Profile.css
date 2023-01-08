@@ -6,6 +6,7 @@
     align-items: center;
     height: 100vh;
     width: 100%;
+    max-width: 1280px;
 }
 .profile__error{
     position: absolute;

@@ -185,13 +185,27 @@ and (max-width : 1279px){
 @media screen 
 and (min-width : 1280px)
 and (max-width : 100vw){
+    .navbar__menu-container{
+        position: relative;
+        right: auto;
+        height: auto;
+        width: 100%;
+        max-width: none;
+    }
+    .navbar__item:first-child{
+        display: none;
+    }
+    .navbar__item:last-child{
+        min-height: auto;
+        margin-left: 340px;
+    }
     .navbar__menu{
         gap: 12px;
         position: inherit;
         right: 0;
         height: 74px;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         max-width: none;
         visibility: visible;
     }
