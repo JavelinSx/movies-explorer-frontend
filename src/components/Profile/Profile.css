@@ -8,9 +8,10 @@
     width: 100%;
     max-width: 1280px;
 }
+
 .profile__error{
     position: absolute;
-    top: 20px;
+    top: 23px;
     left: 0;
     font-weight: 400;
     font-size: 10px;
@@ -20,6 +21,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .profile-container{
     height: 100%;
     width: 100%;
@@ -29,6 +31,7 @@
     justify-self: center;
     justify-content: space-between;
 }
+
 .profile__text{
     font-weight: 500;
     font-size: 11px;
@@ -43,6 +46,7 @@
     line-height: 29px;
     text-align: center;
 }
+
 .profile__form{
     display: flex;
     flex-direction: column;
@@ -52,15 +56,15 @@
     max-width: 410px;
     max-height: calc(100vh - 65%);
 }
+
 .profile__form-label{
+    height: 45px;
     text-align: left;
     position: relative;
-    padding-bottom: 23px;
     border-bottom: 1px solid var(--grey-42)
-    
 }
-.profile__form-label:last-child{
 
+.profile__form-label:last-child{
     border: none;
 }
 
@@ -82,7 +86,7 @@
 .profile__input-container{
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 30px;
 }
 
 .profile__btn{
@@ -97,27 +101,33 @@
     padding: 0;
     transition: .2s;
 }
+
 .profile__btn:hover{
     opacity: .7;
     transition: .2s;
 }
+
 .profile__btn-edit{
     width: min-content;
     margin-bottom: 16px;
     visibility: visible;
 }
+
 .profile__btn-edit-hide{
     visibility: hidden;
 }
+
 .profile__btn-exit{
     font-weight: 500;
     color: var(--red);
     padding-bottom: 25px;
     visibility: visible;
 }
+
 .profile__btn-exit-hide{
     visibility: hidden;
 }
+
 .profile__btn-save{
     color: var(--white);
     cursor: pointer;
@@ -131,14 +141,17 @@
     transition: .2s;
 
 }
+
 .profile__btn-save:hover{
     opacity: .7;
     transition: .2s;
 }
+
 .profile__btn-save-hide{
     display: none;
 
 }
+
 .profile__btn-container{
     width: 100%;
     max-width: 410px;
@@ -146,6 +159,7 @@
     flex-direction: column;
     align-items: center;
 }
+
 @media screen 
 and (min-width : 768px)
 and (max-width : 1279px){
