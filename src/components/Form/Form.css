@@ -20,6 +20,11 @@
     border-bottom: 1px solid var(--grey-42);
 }
 
+.form__input:disabled{
+    pointer-events: none;
+    color: var(--grey);
+}
+
 .form__input-container{
     display: flex;
     flex-direction: column;
@@ -51,6 +56,15 @@
     transition: .2s;
     opacity: .7;
 }
+.form__submit-btn:disabled{
+    cursor: default;
+    background-color: var(--grey);
+}
+.form__submit-btn:disabled:hover{
+    cursor: default;
+    background-color: var(--grey);
+    opacity: 1;
+}
 
 .form__error-input{
     position: absolute;
@@ -60,6 +74,9 @@
     font-size: 10px;
     line-height: 12px;
     color: var(--red);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .form__error-submit{

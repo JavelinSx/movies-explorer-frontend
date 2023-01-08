@@ -1,0 +1,10 @@
+.preloader-button__container{
+    display: flex;
+    justify-content: center;
+}
+.preloader-button{
+    width: 30px;
+    height: 30px;
+    animation: rotate-spin 2s linear infinite;
+    object-fit: contain;
+}

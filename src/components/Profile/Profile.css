@@ -7,6 +7,18 @@
     height: 100vh;
     width: 100%;
 }
+.profile__error{
+    position: absolute;
+    top: 20px;
+    left: 0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: var(--red);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .profile-container{
     height: 100%;
     width: 100%;
@@ -43,11 +55,11 @@
     text-align: left;
     position: relative;
     padding-bottom: 23px;
-    border-bottom: 1px solid var(--grey-e8)
+    border-bottom: 1px solid var(--grey-42)
     
 }
 .profile__form-label:last-child{
-    padding-top: 10px;
+
     border: none;
 }
 
@@ -69,6 +81,7 @@
 .profile__input-container{
     display: flex;
     flex-direction: column;
+    row-gap: 10px;
 }
 
 .profile__btn{

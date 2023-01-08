@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
+import PreloaderButton from '../PreloaderButton/PreloaderButton';
 import './Form.css';
 
-function Form({formName, children, pathToRedirect, textBtn, textFooter, textLink, onSubmit}){
+function Form({formName, children, pathToRedirect, textBtn, textFooter, textLink, onSubmit, isValid, isLoading, error}){
     return(
         <>
             <form className={`form ${formName}`} onSubmit={onSubmit}>
                 {
                     children
                 }
-                                    <span className='form__error-submit'>Вы ввели неправильный логин пароль.</span>
-                <button className='form__submit-btn'>
-
-                    {textBtn}
+                <span className='form__error-submit'>{error}</span>
+                <button className='form__submit-btn' disabled={!isValid || isLoading}>
+                    {isLoading ? <PreloaderButton/> : textBtn}
                 </button>
             </form>
             <div className='form__footer'>

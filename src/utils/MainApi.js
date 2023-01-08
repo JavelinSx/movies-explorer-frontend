@@ -4,16 +4,26 @@ class Api {
         this._headers = headers
     }
 
-    _request({url, options}){
-        return fetch(url, options).then(this._pasrseResponse)
+    async _request({url, options}){
+        const response = await fetch(this._baseUrl + url, options)
+        console.log(response.clone().json())
+        if (response.ok){
+            return await response.json()
+        }
+        else {
+            return Promise.reject(await response.json())
+        }
+
     }
 
-    _pasrseResponse(res){
-        if(res.ok){
-            return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-    }
+    // _pasrseResponse(res){
+    //     const error = res.json().then((data) => data.message)
+    //     console.log(error)
+    //     if(res.ok){
+    //         return res.json()
+    //     }
+    //     return Promise.reject(res.json().then((data) => data.message));
+    // }
 
     register(userInfo){
         return this._request({
@@ -22,8 +32,8 @@ class Api {
                 method: 'POST',
                 credentials: 'include',
                 headers: this._headers,
+                body: JSON.stringify(userInfo),
             },
-            body: JSON.stringify(userInfo),
         })
     }
 
@@ -34,8 +44,8 @@ class Api {
                 method: 'POST',
                 credentials: 'include',
                 headers: this._headers,
+                body: JSON.stringify(userInfo)
             },
-            body: JSON.stringify(userInfo)
         })
     }
 
@@ -43,7 +53,7 @@ class Api {
         return this._request({
             url: '/signout',
             options: {
-                method: 'POST',
+                method: 'GET',
                 credentials: 'include',
                 headers: this._headers,
             },
@@ -68,8 +78,8 @@ class Api {
                 method: 'PATCH',
                 credentials: 'include',
                 headers: this._headers,
+                body: JSON.stringify(userInfo)
             },
-            body: JSON.stringify(userInfo)
         })
     }
 
@@ -91,8 +101,8 @@ class Api {
                 method: 'POST',
                 credentials: 'include',
                 headers: this._headers,
+                body: JSON.stringify(movieInfo)
             },
-            body: JSON.stringify(movieInfo)
         })
     }
 
@@ -103,17 +113,17 @@ class Api {
                 method: 'DELETE',
                 credentials: 'include',
                 headers: this._headers,
+                body: JSON.stringify(movieId)
             },
-            body: JSON.stringify(movieId)
         })
     }
 
 }
 
-const MainApi = new Api('http://localhost:3001', {
+const MainApi = new Api('http://localhost:3000', {
                             "Content-Type": "application/json",
                             Accept: "application/json",
-                            Origin: "http://localhost:3001"
+                            Origin: 'http://localhost:3000'
                         })
 
 export default MainApi

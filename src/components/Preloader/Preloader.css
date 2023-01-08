@@ -7,12 +7,13 @@
     min-width: 100%;
     padding-top: 79px;
 }
-.preloader-container{
 
+.preloader-container{
     width: 50px;
     height: 50px;
     position: relative;
 }
+
 .preloader-spin{
     width: 53px;
     height: 53px;
@@ -21,6 +22,7 @@
     left: 0;
     border-radius: 50%;
 }
+
 .preloader-spin::after{
     content: '';
     position: absolute;
