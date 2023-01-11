@@ -6,7 +6,6 @@ class Api {
 
     async _request({url, options}){
         const response = await fetch(this._baseUrl + url, options)
-        console.log(response.clone().json())
         if (response.ok){
             return await response.json()
         }
@@ -15,15 +14,6 @@ class Api {
         }
 
     }
-
-    // _pasrseResponse(res){
-    //     const error = res.json().then((data) => data.message)
-    //     console.log(error)
-    //     if(res.ok){
-    //         return res.json()
-    //     }
-    //     return Promise.reject(res.json().then((data) => data.message));
-    // }
 
     register(userInfo){
         return this._request({
@@ -108,12 +98,11 @@ class Api {
 
     deleteMovie(movieId){
         return this._request({
-            url: '/movies',
+            url: `/movies/${movieId}`,
             options: {
                 method: 'DELETE',
                 credentials: 'include',
                 headers: this._headers,
-                body: JSON.stringify(movieId)
             },
         })
     }

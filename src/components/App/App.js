@@ -12,38 +12,78 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
 import MovieApi from '../../utils/MoviesApi';
+import dataMovie from '../../utils/dbData.json'
 
 function App() {
   const navigate = useNavigate()
-  const [movie, setMovie] = useState({})
+  //содержательные стейты
+  const [movies, setMovies] = useState([])
+  const [savedMovies, setSavedMovies] = useState([])
+  const [currentUser, setCurrentUser] = useState({})
+
+  //вспомогательные стейты
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
-  const [currentUser, setCurrentUser] = useState({});
   const [error, setError] = useState('')
   const [isEdit, setIsEdit] = useState(false)
+
+  //проверяем куки у юзера
   useEffect(() => {
     MainApi.getUserInfo()
     .then((data) => { 
-      setLoggedIn(true)
-      setCurrentUser({
-        name: data.name,
-        email: data.email,
-      })
       navigate('/movies')
+      setLoggedIn(true)
+      setCurrentUserData(data)
     })
-    .catch((err) => console.log(err))
+    .catch((err) => setError(err.message))
   },[])
+
+  useEffect(() => {
+    if(loggedIn){
+      getSavedMovies()
+      setMovies(dataMovie.map((unsave) => ({...unsave, isSaved:savedMovies.some((save) => save.movieId===unsave.id)})))
+    }
+  },[loggedIn])
+
+  //сбрасываем ошибку с бэка при переходах страниц
   useEffect(() => {
     setError('')
   }, [navigate])
-  // useEffect(() => {
-  //   if(loggedIn){
-  //     MovieApi.getMovies()
-  //     .then(movie => setMovie({...movie, movie}))
-  //     .catch((err) => console.log(err.message))
-  //     .finally(console.log(movie))
-  //   }
-  // },[loggedIn, movie])
+
+  const getSavedMovies = () => {
+
+    MainApi.getSavedMovies()
+    .then((movie) => {
+      setSavedMovies(movie)
+    })
+    .catch((err) => setError(err.message))
+
+  }
+
+  const setCurrentUserData = (data) => {
+    setCurrentUser({
+      name: data.name,
+      email: data.email,
+    })
+  }
+
+  const onSaveMovie = (movie) => {
+    MainApi.addMovie(movie)
+    .then((movie) => {
+      console.log('save')
+      setSavedMovies(state => ([...state, movie]))
+    })
+    .catch((err) => setError(err.message))
+  }
+
+  const onDeleteMovie = (movieId) => {
+    MainApi.deleteMovie(movieId)
+    .then(() => {
+      console.log('delete')
+      return getSavedMovies()
+    })
+    .catch((err) => setError(err.message))
+  }
 
   const onSignout = () => {
     MainApi.signout()
@@ -52,6 +92,8 @@ function App() {
         name: '',
         email: '',
       })
+      setMovies({})
+      setSavedMovies({})
       setLoggedIn(false)
       navigate('/')
     })
@@ -61,12 +103,9 @@ function App() {
     setIsLoading(true)
     MainApi.login(userInfo)
     .then((data) => {
-      navigate('/movies')
-      setCurrentUser({
-        name: data.name,
-        email: data.email,
-      })
       setLoggedIn(true)
+      setCurrentUserData(data)
+      navigate('/movies')
     })
     .catch((err) => setError(err.message))
     .finally(() => {
@@ -89,12 +128,14 @@ function App() {
       resetForm()
     })
   }
+  
   const enableEditUserInfo = () => {
     setIsEdit(!isEdit)
   }
 
   const updateUserInfo = (userInfo) => {
     setIsLoading(true)
+    console.log(userInfo)
     MainApi.updateUserInfo(userInfo)
     .then((data) => {
       setCurrentUser({
@@ -120,16 +161,25 @@ function App() {
           }/>
 
           <Route path='/movies' element={
-            <ProtectedRoute 
+            <ProtectedRoute
               component={Movies} 
               loggedIn={loggedIn}
+              isLoading={isLoading}
+              savedMovies={savedMovies}
+              movies={movies}
+              onSaveMovie={onSaveMovie}
+              onDeleteMovie={onDeleteMovie}
             />
           }/>
 
           <Route path='/saved-movies' element={
             <ProtectedRoute 
               component={SavedMovies}
-              loggedIn={loggedIn} 
+              loggedIn={loggedIn}
+              isLoading={isLoading}
+              savedMovies={savedMovies}
+              onSaveMovie={onSaveMovie}
+              onDeleteMovie={onDeleteMovie} 
             />
           }/>
 

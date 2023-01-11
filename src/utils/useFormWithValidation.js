@@ -20,7 +20,6 @@ export function useFormWithValidation(initialValue) {
     const value = target.value;
     setValues({...values, [name]: value});
     setIsValid(target.closest("form").checkValidity());
-    console.log(value)
     if(value.length === 0){
         setErrors({...errors, [name]: 'Необходимо заполнить это поле' });
     }
@@ -31,7 +30,6 @@ export function useFormWithValidation(initialValue) {
         setErrors({...errors, [name]: 'Имя может содержать только латиницу, кириллицу, пробел или дефис' })
     }
     else if(value.name==='email' && !EMAIL_REGEX.test(value)){
-      console.log('hello')
         setErrors({...errors, [name]: 'Неверный формат email' })
     } else {
         setErrors({...errors, [name]: target.validationMessage});
