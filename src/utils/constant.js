@@ -18,3 +18,20 @@ export const movieSendObject = (movie) => {
         nameEN: movie.nameEN,
     }
 }
+
+function filterMoviesIsSaved(movies, savedMovies){
+    return movies.map((unsave) => ({...unsave, isSaved:savedMovies.some((save) => save.movieId===unsave.id)}))
+}
+function searchMovies(movies, searchValue){
+    return movies.filter((movie) => movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()))
+}
+
+function getDeleteMovies(savedMovies, movie){
+    return savedMovies.filter((movieSave) => movieSave.movieId===movie.id || movie.movieId)
+}
+
+function filterMoviesDuration(movies){
+    return movies.filter((movie) => movie.duration<=60 ? movie : '')
+}
+
+export {filterMoviesIsSaved, searchMovies, getDeleteMovies, filterMoviesDuration}

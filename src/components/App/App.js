@@ -13,13 +13,23 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
 import MovieApi from '../../utils/MoviesApi';
 import dataMovie from '../../utils/dbData.json'
+import {setMoviesOnBeatFilm, 
+  setMoviesSavedUser, 
+  setUserProfileData, 
+  getMoviesOnBeatFilm, 
+  getMoviesSavedUser, 
+  getUserProfileData,
+  resetStorage} from '../../utils/storageData'
 
 function App() {
   const navigate = useNavigate()
   //содержательные стейты
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([])
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState({
+    name: '',
+    email: '',
+  })
 
   //вспомогательные стейты
   const [loggedIn, setLoggedIn] = useState(false);
@@ -31,17 +41,25 @@ function App() {
   useEffect(() => {
     MainApi.getUserInfo()
     .then((data) => { 
-      navigate('/movies')
-      setLoggedIn(true)
-      setCurrentUserData(data)
+      if(getUserProfileData().name===''){
+        navigate('/movies')
+        setLoggedIn(true)
+        setCurrentUser(data)
+        setUserProfileData(data)
+      }
+      else{
+        navigate('/movies')
+        setLoggedIn(true)
+        setCurrentUser(getUserProfileData())
+      }
     })
     .catch((err) => setError(err.message))
   },[])
 
   useEffect(() => {
-    if(loggedIn){
+    if(loggedIn===true){
       getSavedMovies()
-      setMovies(dataMovie.map((unsave) => ({...unsave, isSaved:savedMovies.some((save) => save.movieId===unsave.id)})))
+      getMovies()
     }
   },[loggedIn])
 
@@ -50,27 +68,34 @@ function App() {
     setError('')
   }, [navigate])
 
+  const getMovies = () => {
+    if(getMoviesOnBeatFilm()===null || []){
+      setMovies(dataMovie)
+      setMoviesOnBeatFilm(dataMovie)
+    }
+    else{
+      setMovies(getMoviesOnBeatFilm())
+    }
+  }
+
   const getSavedMovies = () => {
-
-    MainApi.getSavedMovies()
-    .then((movie) => {
-      setSavedMovies(movie)
-    })
-    .catch((err) => setError(err.message))
-
+    if(getMoviesSavedUser()===null || []){
+      MainApi.getSavedMovies()
+      .then((movie) => {
+        setSavedMovies(movie)
+        setMoviesSavedUser(movie)
+      })
+      .catch((err) => setError(err.message))
+    }
+    else{
+      setSavedMovies(getMoviesSavedUser())
+    }
   }
 
-  const setCurrentUserData = (data) => {
-    setCurrentUser({
-      name: data.name,
-      email: data.email,
-    })
-  }
 
   const onSaveMovie = (movie) => {
     MainApi.addMovie(movie)
     .then((movie) => {
-      console.log('save')
       setSavedMovies(state => ([...state, movie]))
     })
     .catch((err) => setError(err.message))
@@ -79,7 +104,6 @@ function App() {
   const onDeleteMovie = (movieId) => {
     MainApi.deleteMovie(movieId)
     .then(() => {
-      console.log('delete')
       return getSavedMovies()
     })
     .catch((err) => setError(err.message))
@@ -92,8 +116,9 @@ function App() {
         name: '',
         email: '',
       })
-      setMovies({})
-      setSavedMovies({})
+      setMovies([])
+      setSavedMovies([])
+      resetStorage()
       setLoggedIn(false)
       navigate('/')
     })
@@ -104,7 +129,7 @@ function App() {
     MainApi.login(userInfo)
     .then((data) => {
       setLoggedIn(true)
-      setCurrentUserData(data)
+      setCurrentUser(data)
       navigate('/movies')
     })
     .catch((err) => setError(err.message))
@@ -135,13 +160,13 @@ function App() {
 
   const updateUserInfo = (userInfo) => {
     setIsLoading(true)
-    console.log(userInfo)
     MainApi.updateUserInfo(userInfo)
     .then((data) => {
       setCurrentUser({
         name: data.name,
         email: data.email,
       })
+      setUserProfileData(userInfo)
       setIsEdit(false)
       setError('')
     })

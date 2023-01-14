@@ -16,7 +16,7 @@ function SearchForm({onSearch,onFilter}){
 
     //autocomplete отключён по причине того, что отображается неккоректно(ответа почему, не нашёл)
     return(
-        <div className='search-container'>
+        <div className='search-form__container'>
             <form className='search-form'onSubmit={handleSearch}>
                 <label className='search-input-label' htmlFor='input-search'>
                     <img className='search-input__icon-search' src={iconSearch} alt='иконка лупы'></img>

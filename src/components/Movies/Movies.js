@@ -1,30 +1,20 @@
 import './Movies.css'
-import { useEffect, useState, useMemo } from "react"
 import MoviesCardList from "../MoviesCardList/MoviesCardList"
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import Preloader from "../Preloader/Preloader";
-import { urlApi, movieSendObject } from '../../utils/constant.js';
 import { FilteringMovies } from '../../utils/filteringMovies';
 
 function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedMovies}){
 
-    const filterMovies = FilteringMovies(movies,savedMovies)
-
-    useEffect(() => {
-        if(filterMovies.resultMovies.length===0){
-            filterMovies.modifyMovieIsSaved()
-        }
-
-    },[movies, savedMovies])
+    const filterMovies = FilteringMovies(movies, savedMovies, onDeleteMovie, onSaveMovie)
 
     const handleClickButtonOnCard = (movie) => {
-        let deleteMovie = savedMovies.filter((movieSave) => movieSave.movieId===movie.id)
         if(movie.isSaved){
-            onSaveMovie(movieSendObject(movie))
+            filterMovies.deletingMovie(movie)
         } else {
-            onDeleteMovie(deleteMovie[0]._id)
+            filterMovies.savingMovie(movie)
         }
     }
 
@@ -32,21 +22,16 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
         filterMovies.modifyMovieIsSearch(searchValue)
     }
 
-    // const handleOnFilter = (isOn) => {
-    //     if(isOn){
-    //         setMovieModify(movieModify.filter((movie) => movie.duration<=60 ? movie : ''))
-    //     }
-    //     else{
-    //         setMovieModify(movieModify)
-    //     }
-    // }
+    const handleOnFilter = (checked) => {
+        filterMovies.modifyMoviesOnFilter(checked)
+    }
 
     return(
         <section className='movies'>
             <Header loggedIn={loggedIn}></Header>
             <SearchForm 
                 onSearch={handleOnSearch}
-                // onFilter={handleOnFilter}
+                onFilter={handleOnFilter}
             />
             {isLoading ? <Preloader /> : <MoviesCardList 
                                             onSaveMovie={onSaveMovie}

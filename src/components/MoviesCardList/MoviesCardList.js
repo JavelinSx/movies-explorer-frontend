@@ -53,7 +53,7 @@ function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handle
                 </ul>
             }
             {
-                dataShow.length>3 ? <button className='movies-card-list__add' onClick={showMore}>Ещё</button> : ''
+                dataShow.length!==movies.length ? <button className='movies-card-list__add' onClick={showMore}>Ещё</button> : null
             }
         </>
     )

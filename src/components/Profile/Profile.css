@@ -133,7 +133,7 @@
     cursor: pointer;
     display: block;
     height: 45px;
-    width: 100%;
+    width: 85%;
     background-color: var(--blue);
     border-radius: 3px;
     border: none;
@@ -185,6 +185,9 @@ and (max-width : 1279px){
     .profile__title{
         padding-bottom: 96px;
     }
+    .profile__btn-save{
+        width: 100%;
+    }
 }
 
 @media screen 
@@ -214,5 +217,8 @@ and (max-width : 100vw){
     }
     .profile__btn-container{
         padding-top: 150px;
+    }
+    .profile__btn-save{
+        width: 100%;
     }
 }

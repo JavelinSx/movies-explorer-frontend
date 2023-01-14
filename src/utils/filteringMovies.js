@@ -1,27 +1,77 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useMemo} from 'react'
+import { movieSendObject } from './constant';
+import {filterMoviesIsSaved, searchMovies, getDeleteMovies, filterMoviesDuration} from './constant'
 
-export function FilteringMovies(movies, savedMovies){
-    const [resultMovies, setResultMovies] = useState([])
+export function FilteringMovies(movies, savedMovies, onDeleteMovie, onSaveMovie){
+
     const [movieModify, setMovieModify] = useState([])
-    const [savedMoviesModify, setSavedMoviesModify] = useState([])
-
+    const [stateMovieListSearch, setStateMovieListSearch] = useState(true)
+    const [stateMovieListFilter, setStateMovieListFilter] = useState(true)
+    const [searchValue, setSearchValue] = useState('')
 
     const modifyMovieIsSaved = () => {
-            setMovieModify(movies.map((unsave) => ({...unsave, isSaved:savedMovies.some((save) => save.movieId===unsave.id)})))
-            setSavedMoviesModify(savedMovies)
+        setMovieModify(filterMoviesIsSaved(movies, savedMovies))
     }
 
-    const modifyMovieIsSearch = (searchValue) => {
-        if(searchValue.length>0){
-            setMovieModify(movieModify.filter((movie) => movie.nameRU.toLowerCase().includes(searchValue.toLowerCase())))
-            setResultMovies(movieModify)
-        }
-        else {
+    useMemo(() => {
+        if(stateMovieListSearch && stateMovieListFilter){
             modifyMovieIsSaved()
         }
+    },[movies, savedMovies])
+
+    useEffect(() => {
+
+        let searchList = filterMoviesIsSaved(movies, savedMovies)
+        let searchListDuration = filterMoviesDuration(searchList)
+        let searchListResult = stateMovieListFilter ? searchList : searchListDuration
+        if (searchValue.length>0){
+            setMovieModify(searchMovies(searchListResult, searchValue)) 
+            setStateMovieListSearch(false)
+        }
+        else{
+            if(stateMovieListFilter){
+                setMovieModify(searchMovies(searchListResult, searchValue)) 
+            }
+            else if(searchList.length>0){
+                setMovieModify(searchMovies(searchListResult, searchValue)) 
+            }
+            else{
+                setStateMovieListSearch(true)
+            }
+        }
+
+    },[stateMovieListFilter, stateMovieListSearch, searchValue])
+
+    const modifyMovieIsSearch = (searchValue) => {
+        setSearchValue(searchValue)
+        if (searchValue.length>0){
+            setStateMovieListSearch(false)
+        }
+        else{
+            setStateMovieListSearch(true)
+        }
     }
 
-    return { modifyMovieIsSaved, modifyMovieIsSearch, movieModify, savedMoviesModify, resultMovies}
+    const modifyMoviesOnFilter = (checked) => {
+        if(checked){
+            setMovieModify(filterMoviesDuration(movieModify))
+            setStateMovieListFilter(false)
+        }
+        else{
+            setStateMovieListFilter(true)
+        }
+    }
+
+    const savingMovie = (movie) => {
+        onSaveMovie(movieSendObject(movie))
+        movie.isSaved = !movie.isSaved
+    }
+    const deletingMovie = (movie) => {
+        let deleteMovie = getDeleteMovies(savedMovies, movie)
+        onDeleteMovie(deleteMovie[0]._id)
+        movie.isSaved = !movie.isSaved 
+    }
+
+    return { savingMovie, deletingMovie, modifyMoviesOnFilter, modifyMovieIsSearch, movieModify}
 
 }
-

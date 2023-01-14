@@ -5,7 +5,6 @@ function MoviesCard({movie, btnLikeClassActive, btnLikeClassDisable, handleClick
     const {nameRU, duration, image} = movie
     const generateDurationInfo = () => `${Math.floor(duration / 60)}ч ${duration % 60}м`
     const handleClick = () => {
-        movie.isSaved = !movie.isSaved
         handleClickButtonOnCard(movie)
     }
     return(
