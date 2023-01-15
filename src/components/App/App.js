@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     MainApi.getUserInfo()
     .then((data) => { 
-      if(getUserProfileData().name===''){
+      if(getUserProfileData().name==='' || null){
         navigate('/movies')
         setLoggedIn(true)
         setCurrentUser(data)
