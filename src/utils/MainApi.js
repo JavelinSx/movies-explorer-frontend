@@ -110,10 +110,10 @@ class Api {
 
 }
 
-const MainApi = new Api(urlDev, {
+const MainApi = new Api(urlMainApi, {
                             "Content-Type": "application/json",
                             Accept: "application/json",
-                            Origin: urlDev,
+                            Origin: urlMainApi,
                         })
 
 export default MainApi
