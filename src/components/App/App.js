@@ -40,18 +40,10 @@ function App() {
   useEffect(() => {
     MainApi.getUserInfo()
     .then((data) => { 
-      console.log(getUserProfileData().name)
-      if(getUserProfileData().name==='' || null){
-        navigate('/movies')
-        setLoggedIn(true)
-        setCurrentUser(data)
-        setUserProfileData(data)
-      }
-      else{
-        setLoggedIn(true)
-        setCurrentUser(getUserProfileData())
-        navigate('/movies')
-      }
+      setLoggedIn(true)
+      setCurrentUser(data)
+      setUserProfileData(data)
+      navigate('/movies')
     })
     .catch((err) => setError(err.message))
     .finally(() => {

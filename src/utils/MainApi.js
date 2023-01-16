@@ -44,7 +44,7 @@ class Api {
         return this._request({
             url: '/signout',
             options: {
-                method: 'GET',
+                method: 'POST',
                 credentials: 'include',
                 headers: this._headers,
             },
