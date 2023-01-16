@@ -1,4 +1,5 @@
 export const urlApi = 'https://api.nomoreparties.co/'
+export const urlMainApi = 'https://api-javelin-movie.nomoredomains.club'
 export const EMAIL_REGEX = /^[\w-.]+@[\w-]+\.[a-z]{2,4}$/i;
 export const TEXT_REGEX = /^[a-zа-яё\- ]+$/i;
 

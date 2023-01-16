@@ -1,3 +1,4 @@
+import {urlMainApi} from './constant'
 class Api {
     constructor(baseUrl, headers){
         this._baseUrl = baseUrl;
@@ -109,10 +110,10 @@ class Api {
 
 }
 
-const MainApi = new Api('api-javelin-movie.nomoredomains.club', {
+const MainApi = new Api('urlMainApi', {
                             "Content-Type": "application/json",
                             Accept: "application/json",
-                            Origin: 'api-javelin-movie.nomoredomains.club'
+                            Origin: 'urlMainApi'
                         })
 
 export default MainApi
