@@ -12,7 +12,6 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
 import MovieApi from '../../utils/MoviesApi';
-import dataMovie from '../../utils/dbData.json'
 import {setMoviesOnBeatFilm, 
   setMoviesSavedUser, 
   setUserProfileData, 
@@ -48,9 +47,9 @@ function App() {
         setUserProfileData(data)
       }
       else{
-        navigate('/movies')
         setLoggedIn(true)
         setCurrentUser(getUserProfileData())
+        navigate('/movies')
       }
     })
     .catch((err) => setError(err.message))
@@ -70,8 +69,12 @@ function App() {
 
   const getMovies = () => {
     if(getMoviesOnBeatFilm()===null || []){
-      setMovies(dataMovie)
-      setMoviesOnBeatFilm(dataMovie)
+      MovieApi.getMovies()
+      .then((movie) => {
+        setMovies(movie)
+        setMoviesOnBeatFilm(movie)
+      })
+      .catch((err) => setError(err.message))
     }
     else{
       setMovies(getMoviesOnBeatFilm())
@@ -143,9 +146,9 @@ function App() {
     setIsLoading(true)
     MainApi.register(userInfo)
     .then((data) => {
-      navigate('/signin')
       onLogin({email: data.email, password: userInfo.password}, resetForm)
       setIsLoading(false)
+      navigate('/signin')
     })
     .catch((err) => setError(err.message))
     .finally(() => {

@@ -109,10 +109,10 @@ class Api {
 
 }
 
-const MainApi = new Api('http://localhost:3000', {
+const MainApi = new Api('http://api-javelin-movie.nomoredomains.club', {
                             "Content-Type": "application/json",
                             Accept: "application/json",
-                            Origin: 'http://localhost:3000'
+                            Origin: 'http://api-javelin-movie.nomoredomains.club'
                         })
 
 export default MainApi
