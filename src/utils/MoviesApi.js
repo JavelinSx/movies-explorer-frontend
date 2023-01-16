@@ -1,4 +1,4 @@
-import {urlBeatFilm} from './constant';
+import {urlApi} from './constant';
 
 class Api {
     constructor(baseUrl, headers){
@@ -19,20 +19,19 @@ class Api {
 
     getMovies(){
         return this._request({
-            url: '',
+            url: 'beatfilm-movies',
             options: {
                 method: 'GET',
-                credentials: 'include',
                 headers: this._headers,
             },
         })
     }
 }
 
-const MovieApi = new Api(urlBeatFilm,{
+const MovieApi = new Api(urlApi,{
     "Content-Type": "application/json",
     Accept: "application/json",
-    Origin: urlBeatFilm
+    Origin: urlApi
 })
 
 export default MovieApi
