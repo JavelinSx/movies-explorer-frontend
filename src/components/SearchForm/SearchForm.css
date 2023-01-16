@@ -106,7 +106,6 @@ and (max-width : 1279px){
         border-radius: 9px;
         padding-top: 0;
         min-width: 510px;
-        max-width: 985px;
         align-items: center;
         flex-direction: row;
     }
@@ -133,7 +132,7 @@ and (max-width : 100vw){
         flex-direction: row;
         height: 216px;
         border-radius: 9px;
-        width: 90%;
+        width: 100%;
     }
     .search-form{
         background-color: var(--black22);

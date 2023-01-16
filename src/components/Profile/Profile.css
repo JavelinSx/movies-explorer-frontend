@@ -153,6 +153,7 @@
 }
 
 .profile__btn-container{
+    padding-bottom: 40px;
     width: 100%;
     max-width: 410px;
     display: flex;

@@ -2,26 +2,30 @@ import './MoviesCardList.css'
 import { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard'
 import { urlApi } from '../../utils/constant.js';
+import useCurrentWidth from '../../utils/resizeListener'
 
 function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlSavedImage}){
     const [itemToShow, setItemToShow] = useState(0);
     const [dataShow, setDataShow] = useState([])
     const [countCard, setCountCard] = useState(0)
     const [countCardAdd, setCountCardAdd] = useState(2)
+
+    let width = useCurrentWidth()
+
     useEffect(() => {
-        if(window.screen.width>=320){
+        if(width>=320){
             setCountCard(5)
             setCountCardAdd(2)
         }
-        if(window.screen.width>=768){
+        if(width>=768){
             setCountCard(8)
             setCountCardAdd(2)
         }
-        if(window.screen.width>=1280){
+        if(width>=1280){
             setCountCard(12)
             setCountCardAdd(4)
         }
-    },[])
+    },[width])
 
     useEffect(() => {
         setDataShow(movies.length>0 ? movies.slice(0,countCard) : [])

@@ -14,7 +14,7 @@
 
 }
 .movie-card__image{
-    height: 100%;
+    width: 100%;
     max-height: 400px;
     object-fit: cover;
     color: var(--white);

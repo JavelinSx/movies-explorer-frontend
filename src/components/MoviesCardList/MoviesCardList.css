@@ -11,6 +11,7 @@
     z-index: 1;
     height: 100%;
     flex-grow: 100;
+    width: 95%;
 }
 .movies-card-list__add{
     color: var(--white);

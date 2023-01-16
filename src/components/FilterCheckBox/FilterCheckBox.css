@@ -15,6 +15,7 @@
     padding-bottom: 45px;
     border-bottom: 1px solid var(--grey-42);
     width: 100%;
+    z-index: 1;
 }
 .filter-checkbox__switch{
     position: relative;

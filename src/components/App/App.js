@@ -40,6 +40,7 @@ function App() {
   useEffect(() => {
     MainApi.getUserInfo()
     .then((data) => { 
+      console.log(getUserProfileData().name)
       if(getUserProfileData().name==='' || null){
         navigate('/movies')
         setLoggedIn(true)
@@ -53,6 +54,9 @@ function App() {
       }
     })
     .catch((err) => setError(err.message))
+    .finally(() => {
+      setIsLoading(false)
+    })
   },[])
 
   useEffect(() => {
@@ -113,6 +117,7 @@ function App() {
   }
 
   const onSignout = () => {
+    setIsLoading(true)
     MainApi.signout()
     .then(() => {
       setCurrentUser({
@@ -124,6 +129,9 @@ function App() {
       resetStorage()
       setLoggedIn(false)
       navigate('/')
+    })
+    .finally(() => {
+      setIsLoading(false)
     })
   }
 
