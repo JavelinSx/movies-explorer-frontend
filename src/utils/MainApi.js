@@ -1,4 +1,4 @@
-import {urlMainApi, urlDev} from './constant'
+import {urlMainApi} from './constant'
 class Api {
     constructor(baseUrl, headers){
         this._baseUrl = baseUrl;
@@ -110,10 +110,10 @@ class Api {
 
 }
 
-const MainApi = new Api(urlDev, {
+const MainApi = new Api(urlMainApi, {
                             "Content-Type": "application/json",
                             Accept: "application/json",
-                            Origin: urlDev,
+                            Origin: urlMainApi,
                         })
 
 export default MainApi
