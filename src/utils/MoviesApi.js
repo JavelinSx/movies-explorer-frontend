@@ -19,7 +19,7 @@ class Api {
 
     getMovies(){
         return this._request({
-            url: '/movies',
+            url: '',
             options: {
                 method: 'GET',
                 credentials: 'include',
