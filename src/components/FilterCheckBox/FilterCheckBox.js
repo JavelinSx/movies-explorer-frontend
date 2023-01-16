@@ -3,7 +3,6 @@ import './FilterCheckBox.css';
 function FilterCheckBox({onFilter}){
 
     const handleCheckBox = (evt) => {
-        console.log(evt.target.checked)
         onFilter(evt.target.checked)
     }
     return(

@@ -33,15 +33,25 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
                 onSearch={handleOnSearch}
                 onFilter={handleOnFilter}
             />
-            {isLoading ? <Preloader /> : <MoviesCardList 
-                                            onSaveMovie={onSaveMovie}
-                                            onDeleteMovie={onDeleteMovie}
-                                            movies={filterMovies.movieModify}
-                                            urlSavedImage={ false }
-                                            handleClickButtonOnCard={(movie) => handleClickButtonOnCard(movie)}
-                                            btnLikeClassActive='movie-card__btn movie-card__btn-active' 
-                                            btnLikeClassDisable='movie-card__btn'
-                                            />
+            {   isLoading 
+                ? 
+                    <Preloader /> 
+                : 
+                    filterMovies.movieModify.length===0 
+                ?
+                    <div className='movies-card-list__fill-none'>
+                        Нет найденных фильмов
+                    </div>
+                :
+                    <MoviesCardList 
+                        onSaveMovie={onSaveMovie}
+                        onDeleteMovie={onDeleteMovie}
+                        movies={filterMovies.movieModify}
+                        urlSavedImage={ false }
+                        handleClickButtonOnCard={(movie) => handleClickButtonOnCard(movie)}
+                        btnLikeClassActive='movie-card__btn movie-card__btn-active' 
+                        btnLikeClassDisable='movie-card__btn'
+                    />
             }
             <Footer></Footer>
         </section>

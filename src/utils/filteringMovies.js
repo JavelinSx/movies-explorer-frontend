@@ -3,7 +3,7 @@ import { movieSendObject } from './constant';
 import {filterMoviesIsSaved, searchMovies, getDeleteMovies, filterMoviesDuration} from './constant'
 
 export function FilteringMovies(movies, savedMovies, onDeleteMovie, onSaveMovie){
-
+    const [textEmptyMovies, setTextEmptyMovies] = useState('')
     const [movieModify, setMovieModify] = useState([])
     const [stateMovieListSearch, setStateMovieListSearch] = useState(true)
     const [stateMovieListFilter, setStateMovieListFilter] = useState(true)
@@ -12,6 +12,15 @@ export function FilteringMovies(movies, savedMovies, onDeleteMovie, onSaveMovie)
     const modifyMovieIsSaved = () => {
         setMovieModify(filterMoviesIsSaved(movies, savedMovies))
     }
+
+    useEffect(() => {
+        if(savedMovies.length===0){
+            setTextEmptyMovies('Нет сохранённых фильмов') 
+        }
+        else if(movieModify.length===0){
+            setTextEmptyMovies('Нет найденных фильмов')
+        }
+    },[savedMovies, movieModify, textEmptyMovies])
 
     useMemo(() => {
         if(stateMovieListSearch && stateMovieListFilter){
@@ -72,6 +81,6 @@ export function FilteringMovies(movies, savedMovies, onDeleteMovie, onSaveMovie)
         movie.isSaved = !movie.isSaved 
     }
 
-    return { savingMovie, deletingMovie, modifyMoviesOnFilter, modifyMovieIsSearch, movieModify}
+    return { savingMovie, deletingMovie, modifyMoviesOnFilter, modifyMovieIsSearch, movieModify, textEmptyMovies}
 
 }

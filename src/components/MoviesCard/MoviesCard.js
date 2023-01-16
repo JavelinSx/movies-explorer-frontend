@@ -1,7 +1,6 @@
 import './MoviesCard.css';
 
 function MoviesCard({movie, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlApi, urlSavedImage}){
-    console.log(movie.trailerLink)
     const {nameRU, duration, image} = movie
     const generateDurationInfo = () => `${Math.floor(duration / 60)}ч ${duration % 60}м`
     const handleClick = () => {
