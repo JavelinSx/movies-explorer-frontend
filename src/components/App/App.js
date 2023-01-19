@@ -13,14 +13,15 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
 import MovieApi from '../../utils/MoviesApi';
 import {setMoviesOnBeatFilm, 
-  setMoviesSavedUser, 
+  setMoviesUser, 
   setUserProfileData, 
   getMoviesOnBeatFilm, 
-  getMoviesSavedUser, 
+  getMoviesUser, 
   getUserProfileData,
   resetStorage} from '../../utils/storageData'
 
 function App() {
+  console.log('render')
   const navigate = useNavigate()
   //содержательные стейты
   const [movies, setMovies] = useState([])
@@ -52,9 +53,9 @@ function App() {
   },[])
 
   useEffect(() => {
-    if(loggedIn===true){
-      getSavedMovies()
+    if(loggedIn===true){ 
       getMovies()
+      getSavedMovies()
     }
   },[loggedIn])
 
@@ -64,7 +65,7 @@ function App() {
   }, [navigate])
 
   const getMovies = () => {
-    if(getMoviesOnBeatFilm()===null || []){
+    if(getMoviesOnBeatFilm()===null || getMoviesOnBeatFilm().length===0){
       MovieApi.getMovies()
       .then((movie) => {
         setMovies(movie)
@@ -78,17 +79,18 @@ function App() {
   }
 
   const getSavedMovies = () => {
-    if(getMoviesSavedUser()===null || []){
+    if(getMoviesUser()===null || getMoviesUser.length===0){
       MainApi.getSavedMovies()
       .then((movie) => {
         setSavedMovies(movie)
-        setMoviesSavedUser(movie)
+        setMoviesUser(movie)
       })
       .catch((err) => setError(err.message))
     }
     else{
-      setSavedMovies(getMoviesSavedUser())
+      setSavedMovies(getMoviesUser())
     }
+
   }
 
 
@@ -96,13 +98,16 @@ function App() {
     MainApi.addMovie(movie)
     .then((movie) => {
       setSavedMovies(state => ([...state, movie]))
+      setMoviesUser(savedMovies)
     })
     .catch((err) => setError(err.message))
   }
 
   const onDeleteMovie = (movieId) => {
     MainApi.deleteMovie(movieId)
-    .then(() => {
+    .then((movie) => {
+      console.log(savedMovies,'savedMovies')
+      console.log(getMoviesUser(), 'storageMovies')
       return getSavedMovies()
     })
     .catch((err) => setError(err.message))
@@ -176,6 +181,9 @@ function App() {
     .catch((err) => {
       setIsEdit(true)
       setError(err.message)
+    })
+    .finally(() => {
+      setIsLoading(false)
     })
   }
 

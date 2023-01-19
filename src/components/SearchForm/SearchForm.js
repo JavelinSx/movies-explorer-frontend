@@ -2,8 +2,8 @@ import './SearchForm.css';
 import {useState} from 'react'
 import FilterCheckBox from '../FilterCheckBox/FilterCheckBox';
 import iconSearch from '../../images/search-icon.svg'
-function SearchForm({onSearch,onFilter}){
-    const [inputSearch, setInputSearch] = useState('')
+function SearchForm({onSearch, onFilter, searchValueStorage, filterStateStorage}){
+    const [inputSearch, setInputSearch] = useState(searchValueStorage)
     const [errorInput, setErrorInput] = useState('')
     const handleSearch = (evt) => {
         evt.preventDefault()
@@ -28,10 +28,11 @@ function SearchForm({onSearch,onFilter}){
                         id='input-search'
                         name='input'
                         onChange={handleInputSearch}
+                        value={inputSearch}
                     />
                     <button className='search-btn' type='submit'/>
                 </label>
-                <FilterCheckBox onFilter={onFilter} />
+                <FilterCheckBox onFilter={onFilter} filterStateStorage={filterStateStorage} />
                 <span className='search__error'>{errorInput}</span>
             </form>
 

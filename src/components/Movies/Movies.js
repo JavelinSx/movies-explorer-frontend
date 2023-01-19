@@ -4,11 +4,42 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import Preloader from "../Preloader/Preloader";
-import { FilteringMovies } from '../../utils/filteringMovies';
+import {FilteringMovies} from '../../utils/filteringMovies';
+import {filterMoviesIsSaved} from '../../utils/constant'
+import {setMoviesOnBeatFilm,
+    setmoviesUser,
+    setSearchMovies,
+    setUserProfileData,
+    setFilterStateStorage,
+    setSearchInputStorage,
+    getSearchMovies,
+    getSearchInputStorage,
+    getFilterStateStorage,
+    getMoviesOnBeatFilm,
+    getUserProfileData,
+    getMoviesUser,
+    resetStorage} from '../../utils/storageData'
 
+import { useEffect, useState, useMemo } from 'react';
 function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedMovies}){
+    const [moviesBeat, setMoviesBeat] = useState([])
+    const [moviesUser, setMoviesUser] = useState([])
+    const [checked, setChecked] = useState(getFilterStateStorage())
+    const [searchValue, setSearchValue] = useState(getSearchInputStorage())
 
-    const filterMovies = FilteringMovies(movies, savedMovies, onDeleteMovie, onSaveMovie)
+    const filterMovies = FilteringMovies(moviesBeat, moviesUser, onDeleteMovie, onSaveMovie)
+    
+    useEffect(() => {
+        setMoviesBeat(getMoviesOnBeatFilm())
+        setMoviesUser(getMoviesUser())
+        
+        filterMovies.useSearch(moviesBeat, moviesUser, searchValue, checked)
+        
+        // filterMovies.modifyMovieIsSearch(getSearchInputStorage())
+        // filterMovies.modifyMoviesOnFilter(getFilterStateStorage())
+        // filterMovies.useSearch(moviesBeat, moviesUser, searchValue, checked)
+    },[movies, savedMovies])
+
 
     const handleClickButtonOnCard = (movie) => {
         if(movie.isSaved){
@@ -20,10 +51,15 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
 
     const handleOnSearch = (searchValue) => {
         filterMovies.modifyMovieIsSearch(searchValue)
+        setSearchValue(searchValue)
+        setSearchInputStorage(searchValue)
+        filterMovies.useSearch(moviesBeat, moviesUser, searchValue, checked)
     }
 
     const handleOnFilter = (checked) => {
         filterMovies.modifyMoviesOnFilter(checked)
+        setFilterStateStorage(checked)
+        setChecked(checked)
     }
 
     return(
@@ -32,12 +68,14 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
             <SearchForm 
                 onSearch={handleOnSearch}
                 onFilter={handleOnFilter}
+                searchValueStorage={getSearchInputStorage() || ''}
+                filterStateStorage={getFilterStateStorage() || false}
             />
             {   isLoading 
                 ? 
                     <Preloader /> 
                 : 
-                    filterMovies.movieModify.length===0 
+                    filterMovies.movieModify.length===0
                 ?
                     <div className='movies-card-list__fill-none'>
                         Нет найденных фильмов

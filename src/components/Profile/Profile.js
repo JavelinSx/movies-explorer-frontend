@@ -8,7 +8,6 @@ function Profile({updateUserInfo, loggedIn, onSignout, error, isEdit, enableEdit
     const currentUser = useContext(CurrentUserContext)
     const form = useFormWithValidation({name: currentUser.name, email: currentUser.email});
 
-
     const handleSignout = (evt) => {
         evt.preventDefault()
         onSignout()
