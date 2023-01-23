@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, useNavigate} from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -12,6 +12,7 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
 import MovieApi from '../../utils/MoviesApi';
+import data from '../../utils/dbData.json'
 import {setMoviesOnBeatFilm, 
   setMoviesUser, 
   setUserProfileData, 
@@ -21,7 +22,6 @@ import {setMoviesOnBeatFilm,
   resetStorage} from '../../utils/storageData'
 
 function App() {
-  console.log('render')
   const navigate = useNavigate()
   //содержательные стейты
   const [movies, setMovies] = useState([])
@@ -52,47 +52,43 @@ function App() {
     })
   },[])
 
-  useEffect(() => {
+  const getMovies = () => {
+
+      setMovies(data)
+      // MovieApi.getMovies()
+      // .then((movie) => {
+      //   setMovies(movie)
+      //   setMoviesOnBeatFilm(movie)
+      // })
+      // .catch((err) => setError(err.message))
+
+  }
+
+  const getSavedMovies = () => {
+    MainApi.getSavedMovies()
+    .then((movie) => {
+      setSavedMovies(movie)
+      setMoviesUser(movie)
+    })
+    .catch((err) => setError(err.message))
+  }
+
+  useMemo(() => {
     if(loggedIn===true){ 
       getMovies()
       getSavedMovies()
     }
   },[loggedIn])
 
+  useEffect(() => {
+    setMoviesOnBeatFilm(movies)
+    setMoviesUser(savedMovies)
+  },[movies,savedMovies])
+
   //сбрасываем ошибку с бэка при переходах страниц
   useEffect(() => {
     setError('')
   }, [navigate])
-
-  const getMovies = () => {
-    if(getMoviesOnBeatFilm()===null || getMoviesOnBeatFilm().length===0){
-      MovieApi.getMovies()
-      .then((movie) => {
-        setMovies(movie)
-        setMoviesOnBeatFilm(movie)
-      })
-      .catch((err) => setError(err.message))
-    }
-    else{
-      setMovies(getMoviesOnBeatFilm())
-    }
-  }
-
-  const getSavedMovies = () => {
-    if(getMoviesUser()===null || getMoviesUser.length===0){
-      MainApi.getSavedMovies()
-      .then((movie) => {
-        setSavedMovies(movie)
-        setMoviesUser(movie)
-      })
-      .catch((err) => setError(err.message))
-    }
-    else{
-      setSavedMovies(getMoviesUser())
-    }
-
-  }
-
 
   const onSaveMovie = (movie) => {
     MainApi.addMovie(movie)
@@ -105,9 +101,7 @@ function App() {
 
   const onDeleteMovie = (movieId) => {
     MainApi.deleteMovie(movieId)
-    .then((movie) => {
-      console.log(savedMovies,'savedMovies')
-      console.log(getMoviesUser(), 'storageMovies')
+    .then(() => {
       return getSavedMovies()
     })
     .catch((err) => setError(err.message))

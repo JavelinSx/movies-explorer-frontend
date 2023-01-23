@@ -4,60 +4,56 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import Preloader from "../Preloader/Preloader";
-import {FilteringMovies} from '../../utils/filteringMovies';
-import {filterMoviesIsSaved} from '../../utils/constant'
-import {setMoviesOnBeatFilm,
-    setmoviesUser,
+import {filterMoviesIsSaved, searchMovies, getDeleteMovie, movieSendObject} from '../../utils/constant'
+import {
     setSearchMovies,
-    setUserProfileData,
     setFilterStateStorage,
     setSearchInputStorage,
     getSearchMovies,
     getSearchInputStorage,
     getFilterStateStorage,
-    getMoviesOnBeatFilm,
-    getUserProfileData,
-    getMoviesUser,
-    resetStorage} from '../../utils/storageData'
+} from '../../utils/storageData'
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo} from 'react';
+
 function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedMovies}){
-    const [moviesBeat, setMoviesBeat] = useState([])
-    const [moviesUser, setMoviesUser] = useState([])
-    const [checked, setChecked] = useState(getFilterStateStorage())
-    const [searchValue, setSearchValue] = useState(getSearchInputStorage())
 
-    const filterMovies = FilteringMovies(moviesBeat, moviesUser, onDeleteMovie, onSaveMovie)
-    
+    const [renderMovies, setRenderMovies] = useState(getSearchMovies());
+    const [searchValue, setSearchValue] = useState(getSearchInputStorage());
+    const [checked, setChecked] = useState(getFilterStateStorage());
+
     useEffect(() => {
-        setMoviesBeat(getMoviesOnBeatFilm())
-        setMoviesUser(getMoviesUser())
-        
-        filterMovies.useSearch(moviesBeat, moviesUser, searchValue, checked)
-        
-        // filterMovies.modifyMovieIsSearch(getSearchInputStorage())
-        // filterMovies.modifyMoviesOnFilter(getFilterStateStorage())
-        // filterMovies.useSearch(moviesBeat, moviesUser, searchValue, checked)
+        if(renderMovies.length===0){
+            setRenderMovies(movies)
+        }
     },[movies, savedMovies])
 
+    const search = useMemo(() => {
+        let searchList = searchMovies(movies, searchValue, checked)
+        return searchList
+    },[searchValue, checked])
+
+    useEffect(() => {
+        setRenderMovies(search)
+    },[searchValue, checked])
 
     const handleClickButtonOnCard = (movie) => {
-        if(movie.isSaved){
-            filterMovies.deletingMovie(movie)
-        } else {
-            filterMovies.savingMovie(movie)
+        if(!movie.isSaved){
+            onSaveMovie(movieSendObject(movie))
         }
+        else{
+            onDeleteMovie(getDeleteMovie(savedMovies,movie))
+        }
+        movie.isSaved=!movie.isSaved
     }
 
     const handleOnSearch = (searchValue) => {
-        filterMovies.modifyMovieIsSearch(searchValue)
-        setSearchValue(searchValue)
         setSearchInputStorage(searchValue)
-        filterMovies.useSearch(moviesBeat, moviesUser, searchValue, checked)
+        setSearchValue(searchValue)
+        setSearchMovies(renderMovies)
     }
 
     const handleOnFilter = (checked) => {
-        filterMovies.modifyMoviesOnFilter(checked)
         setFilterStateStorage(checked)
         setChecked(checked)
     }
@@ -75,7 +71,7 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
                 ? 
                     <Preloader /> 
                 : 
-                    filterMovies.movieModify.length===0
+                    renderMovies.length===0
                 ?
                     <div className='movies-card-list__fill-none'>
                         Нет найденных фильмов
@@ -84,7 +80,7 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
                     <MoviesCardList 
                         onSaveMovie={onSaveMovie}
                         onDeleteMovie={onDeleteMovie}
-                        movies={filterMovies.movieModify}
+                        movies={filterMoviesIsSaved(renderMovies, savedMovies)}
                         urlSavedImage={ false }
                         handleClickButtonOnCard={(movie) => handleClickButtonOnCard(movie)}
                         btnLikeClassActive='movie-card__btn movie-card__btn-active' 

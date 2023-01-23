@@ -1,5 +1,5 @@
 import './MoviesCardList.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard'
 import { urlApi } from '../../utils/constant.js';
 import useCurrentWidth from '../../utils/resizeListener'
@@ -27,14 +27,14 @@ function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handle
         }
     },[width])
 
-    useEffect(() => {
-        setDataShow(movies.length>0 ? movies.slice(0,countCard) : [])
+    useMemo(() => {
+        setDataShow(movies.slice(0,countCard))
         setItemToShow(countCard+countCardAdd)
     },[countCard, countCardAdd, movies])
 
     const showMore = () => {
         setItemToShow((item)=>item+countCardAdd)
-        setDataShow(movies.length>0 ? movies.slice(0,itemToShow) : [])
+        setDataShow(movies.slice(0,itemToShow))
     }
 
     return(

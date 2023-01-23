@@ -21,7 +21,7 @@ const getSearchMovies = () => {
 }
 //storage FilterCheckBox
 const setFilterStateStorage = (checked) => {
-    localStorage.setItem('checkedFilter', JSON.stringify(checked))
+    localStorage.setItem('checkedFilter', checked)
 }
 const getFilterStateStorage = () => {
     return JSON.parse(localStorage.getItem('checkedFilter')) 
@@ -42,6 +42,7 @@ const getMoviesUser = () => {
 }
 // reset storage
 const resetStorage = () => {
+    setMoviesUser([])
     setSearchMovies([])
     setFilterStateStorage(false)
     setSearchInputStorage('')

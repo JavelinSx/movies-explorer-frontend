@@ -1,12 +1,11 @@
 import './MoviesCard.css';
-
 function MoviesCard({movie, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlApi, urlSavedImage}){
     const {nameRU, duration, image} = movie
     const generateDurationInfo = () => `${Math.floor(duration / 60)}ч ${duration % 60}м`
     const handleClick = () => {
+        console.log('hello')
         handleClickButtonOnCard(movie)
     }
-
     return(
 
         <li className='movie-card'>
