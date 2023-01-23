@@ -139,7 +139,13 @@
     border: none;
     margin-bottom: 40px;
     transition: .2s;
-
+}
+.profile__btn-save:disabled{
+    cursor: auto;
+    background-color: var(--grey-42);
+}
+.profile__btn-save:disabled:hover{
+    opacity: 1;
 }
 
 .profile__btn-save:hover{

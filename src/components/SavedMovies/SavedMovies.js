@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer'
 import SearchForm from '../SearchForm/SearchForm'
 import Preloader from '../Preloader/Preloader'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
-import {filterMoviesIsSaved, searchMovies, getDeleteMovie, movieSendObject} from '../../utils/constant'
+import {searchMovies, getDeleteMovie} from '../../utils/constant'
 
 
 function SavedMovies({loggedIn, onDeleteMovie, onSaveMovie, savedMovies, isLoading}){
@@ -27,19 +27,14 @@ function SavedMovies({loggedIn, onDeleteMovie, onSaveMovie, savedMovies, isLoadi
     const search = useMemo(() => {
         let searchList = searchMovies(savedMovies, searchValue, checked)
         return searchList
-    },[searchValue, checked])
+    },[searchValue, checked, savedMovies])
 
     useEffect(() => {
         setRenderMovies(search)
-    },[searchValue, checked])
+    },[searchValue, checked, savedMovies])
 
     const handleClickButtonOnCard = (movie) => {
-        if(!movie.isSaved){
-            onSaveMovie(movieSendObject(movie))
-        }
-        else{
-            onDeleteMovie(getDeleteMovie(savedMovies,movie))
-        }
+        onDeleteMovie(getDeleteMovie(savedMovies,movie))
         movie.isSaved=!movie.isSaved
     }
 
@@ -71,6 +66,7 @@ function SavedMovies({loggedIn, onDeleteMovie, onSaveMovie, savedMovies, isLoadi
                     </div>
                     :
                     <MoviesCardList 
+                        getKey={true}
                         onSaveMovie={onSaveMovie}
                         onDeleteMovie={onDeleteMovie}
                         movies={renderMovies}                       

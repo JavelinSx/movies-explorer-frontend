@@ -12,14 +12,12 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
 import MovieApi from '../../utils/MoviesApi';
-import data from '../../utils/dbData.json'
 import {setMoviesOnBeatFilm, 
-  setMoviesUser, 
-  setUserProfileData, 
-  getMoviesOnBeatFilm, 
-  getMoviesUser, 
-  getUserProfileData,
-  resetStorage} from '../../utils/storageData'
+        setMoviesUser, 
+        setUserProfileData,
+        setNavigateStorage,
+        getNavigateStorage, 
+        resetStorage} from '../../utils/storageData';
 
 function App() {
   const navigate = useNavigate()
@@ -31,11 +29,14 @@ function App() {
     email: '',
   })
 
+
   //вспомогательные стейты
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [isEdit, setIsEdit] = useState(false)
+  const [navigateRedirect, setNavigateRedirect] = useState(getNavigateStorage() || '/')
+  const [confirmUpdateUser, setConfirmUpdateUser] = useState(false)
 
   //проверяем куки у юзера
   useEffect(() => {
@@ -44,7 +45,7 @@ function App() {
       setLoggedIn(true)
       setCurrentUser(data)
       setUserProfileData(data)
-      navigate('/movies')
+      navigate(navigateRedirect)
     })
     .catch((err) => setError(err.message))
     .finally(() => {
@@ -53,15 +54,11 @@ function App() {
   },[])
 
   const getMovies = () => {
-
-      setMovies(data)
-      // MovieApi.getMovies()
-      // .then((movie) => {
-      //   setMovies(movie)
-      //   setMoviesOnBeatFilm(movie)
-      // })
-      // .catch((err) => setError(err.message))
-
+    MovieApi.getMovies()
+    .then((movie) => {
+      setMovies(movie)
+    })
+    .catch((err) => setError(err.message))
   }
 
   const getSavedMovies = () => {
@@ -87,6 +84,8 @@ function App() {
 
   //сбрасываем ошибку с бэка при переходах страниц
   useEffect(() => {
+    setNavigateStorage(window.location.pathname)
+    setNavigateRedirect(window.location.pathname)
     setError('')
   }, [navigate])
 
@@ -171,6 +170,7 @@ function App() {
       setUserProfileData(userInfo)
       setIsEdit(false)
       setError('')
+      setConfirmUpdateUser(true)
     })
     .catch((err) => {
       setIsEdit(true)
@@ -215,6 +215,7 @@ function App() {
 
           <Route path='/profile' element={
             <ProtectedRoute 
+              confirmUpdateUser={confirmUpdateUser}
               isEdit={isEdit}
               error={error}
               component={Profile}
@@ -227,6 +228,7 @@ function App() {
 
           <Route path='/signin' element={
             <Login 
+              loggedIn={loggedIn}
               error={error}
               isLoading={isLoading} 
               onLogin={(userInfo, resetForm) => onLogin(userInfo, resetForm)}
@@ -236,6 +238,7 @@ function App() {
 
           <Route path='/signup' element={
             <Register 
+              loggedIn={loggedIn}
               error={error}
               isLoading={isLoading} 
               onRegister={(userInfo, resetForm) => onRegister(userInfo, resetForm)}

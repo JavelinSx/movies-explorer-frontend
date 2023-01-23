@@ -4,7 +4,7 @@ import MoviesCard from '../MoviesCard/MoviesCard'
 import { urlApi } from '../../utils/constant.js';
 import useCurrentWidth from '../../utils/resizeListener'
 
-function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlSavedImage}){
+function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlSavedImage, getKey}){
     const [itemToShow, setItemToShow] = useState(0);
     const [dataShow, setDataShow] = useState([])
     const [countCard, setCountCard] = useState(0)
@@ -44,7 +44,7 @@ function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handle
                     {
                         dataShow.map((movie)=>
                             <MoviesCard
-                                key={movie.id || movie.movieId}
+                                key={getKey ? movie.movieId : movie.id}
                                 movie={movie}
                                 urlApi={urlApi}
                                 urlSavedImage={urlSavedImage}

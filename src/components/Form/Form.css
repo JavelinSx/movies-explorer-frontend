@@ -97,6 +97,17 @@
     line-height: 12px;
     color: var(--red);
 }
+.form__confirm-submit{
+    position: absolute;
+    text-align: center;
+    top: calc(100vh - 33%);
+    left: 0;
+    right: 0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: var(--green);
+}
 
 .form__footer{
     display: flex;

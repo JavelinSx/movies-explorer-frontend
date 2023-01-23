@@ -4,7 +4,7 @@ import { useContext} from 'react'
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/useFormWithValidation';
 
-function Profile({updateUserInfo, loggedIn, onSignout, error, isEdit, enableEditUserInfo}){
+function Profile({updateUserInfo, loggedIn, onSignout, error, isEdit, enableEditUserInfo, confirmUpdateUser}){
     const currentUser = useContext(CurrentUserContext)
     const form = useFormWithValidation({name: currentUser.name, email: currentUser.email});
 
@@ -34,7 +34,6 @@ function Profile({updateUserInfo, loggedIn, onSignout, error, isEdit, enableEdit
                         id='form-profile' 
                         className='profile__form profile__text' 
                         onSubmit={handleSubmit} 
-                        isvalid={form.isValid.toString()}
                     >
                         <h1 className='profile__title'>{`Привет, ${currentUser.name}!`}</h1>
                         <div className='profile__input-container'>
@@ -69,9 +68,9 @@ function Profile({updateUserInfo, loggedIn, onSignout, error, isEdit, enableEdit
                         </div>
                         
                     </form>
-                    <span className='form__error-submit'>{error}</span>
+                    {isEdit ? '' : <span className={confirmUpdateUser ? 'form__confirm-submit' : 'form__error-submit'}>{confirmUpdateUser ? 'Вы успешно изменили данные' : error}</span>}
                     <div className='profile__btn-container'>
-                        <button className={isEdit ? 'profile__btn-save' : 'profile__btn-save profile__btn-save-hide'} form='form-profile' >Сохранить</button>
+                        <button className={isEdit ? 'profile__btn-save' : 'profile__btn-save profile__btn-save-hide'} disabled={!form.isValid} form='form-profile' >Сохранить</button>
                         <button className={isEdit ? 'profile__btn-edit-hide' : 'profile__btn-edit profile__btn'} onClick={handleEditProfile}>Редактировать</button>
                         <button className={isEdit ? 'profile__btn-exit-hide' : 'profile__btn-exit profile__btn'} onClick={handleSignout}>Выйти из аккаунта</button>
                     </div>

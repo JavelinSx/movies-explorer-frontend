@@ -21,22 +21,22 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
     const [renderMovies, setRenderMovies] = useState(getSearchMovies());
     const [searchValue, setSearchValue] = useState(getSearchInputStorage());
     const [checked, setChecked] = useState(getFilterStateStorage());
-
+    //если наш getSearchMovies() пустой, то идём сюда и берём movies из props.App
     useEffect(() => {
         if(renderMovies.length===0){
             setRenderMovies(movies)
         }
     },[movies, savedMovies])
-
+    //каждый раз когда дёргаем ручки чекбокс или строки поиска при сабмите, фильтруем фильмы относителньо полученных стейтов
     const search = useMemo(() => {
         let searchList = searchMovies(movies, searchValue, checked)
         return searchList
     },[searchValue, checked])
-
+    //делаем ререндер фильмов на странице каждый раз при обращении к ручкам deps
     useEffect(() => {
         setRenderMovies(search)
     },[searchValue, checked])
-
+    //сохраняем или удаляем фильм
     const handleClickButtonOnCard = (movie) => {
         if(!movie.isSaved){
             onSaveMovie(movieSendObject(movie))
@@ -46,13 +46,13 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
         }
         movie.isSaved=!movie.isSaved
     }
-
+    //ручка сабмит поиска
     const handleOnSearch = (searchValue) => {
         setSearchInputStorage(searchValue)
         setSearchValue(searchValue)
         setSearchMovies(renderMovies)
     }
-
+    //ручка фильтра
     const handleOnFilter = (checked) => {
         setFilterStateStorage(checked)
         setChecked(checked)
@@ -78,6 +78,7 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
                     </div>
                 :
                     <MoviesCardList 
+                        getKey={false}
                         onSaveMovie={onSaveMovie}
                         onDeleteMovie={onDeleteMovie}
                         movies={filterMoviesIsSaved(renderMovies, savedMovies)}

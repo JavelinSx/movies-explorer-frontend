@@ -1,7 +1,7 @@
 export const urlApi = 'https://api.nomoreparties.co/'
 export const urlMainApi = 'https://api-javelin-movie.nomoredomains.club'
 export const urlDev = 'http://localhost:3000'
-export const EMAIL_REGEX = /^[\w-.]+@[\w-]+\.[a-z]{2,4}$/i;
+export const EMAIL_REGEX = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 export const TEXT_REGEX = /^[a-zа-яё\- ]+$/i;
 
 export const movieSendObject = (movie) => {

@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from 'react'
+import {useState} from 'react'
 import './FilterCheckBox.css';
 
 function FilterCheckBox({onFilter, filterStateStorage}){

@@ -26,10 +26,10 @@ export function useFormWithValidation(initialValue) {
     else if(value.length < 2 || value.length > 30){
         setErrors({...errors, [name]: 'Длинна имени должна быть от 2 до 30 символовa' });
     }
-    else if(value.name==='name' && !TEXT_REGEX.test(value)){
+    else if(name==='name' && !TEXT_REGEX.test(value)){
         setErrors({...errors, [name]: 'Имя может содержать только латиницу, кириллицу, пробел или дефис' })
     }
-    else if(value.name==='email' && !EMAIL_REGEX.test(value)){
+    else if(name==='email' && !EMAIL_REGEX.test(value)){
         setErrors({...errors, [name]: 'Неверный формат email' })
     } else {
         setErrors({...errors, [name]: target.validationMessage});

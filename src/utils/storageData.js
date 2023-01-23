@@ -1,3 +1,11 @@
+
+//storage BeatFilm
+const setNavigateStorage = (link) => {
+    localStorage.setItem('navigationLink', JSON.stringify(link))
+}
+const getNavigateStorage = () => {
+    return JSON.parse(localStorage.getItem('navigationLink')) 
+}
 //storage BeatFilm
 const setMoviesOnBeatFilm = (movies) => {
     localStorage.setItem('moviesOnBeatFilm', JSON.stringify(movies))
@@ -5,6 +13,7 @@ const setMoviesOnBeatFilm = (movies) => {
 const getMoviesOnBeatFilm = () => {
     return JSON.parse(localStorage.getItem('moviesOnBeatFilm')) 
 }
+
 //storage UserInfo
 const setUserProfileData = (userInfo) => {
     localStorage.setItem('userProfileData', JSON.stringify(userInfo))
@@ -42,6 +51,7 @@ const getMoviesUser = () => {
 }
 // reset storage
 const resetStorage = () => {
+    setNavigateStorage('')
     setMoviesUser([])
     setSearchMovies([])
     setFilterStateStorage(false)
@@ -59,6 +69,8 @@ export {setMoviesOnBeatFilm,
         setUserProfileData,
         setFilterStateStorage,
         setSearchInputStorage,
+        setNavigateStorage,
+        getNavigateStorage,
         getSearchMovies,
         getSearchInputStorage,
         getFilterStateStorage,
