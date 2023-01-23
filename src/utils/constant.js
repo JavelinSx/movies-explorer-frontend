@@ -5,7 +5,6 @@ export const EMAIL_REGEX = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 export const TEXT_REGEX = /^[a-zа-яё\- ]+$/i;
 
 export const movieSendObject = (movie) => {
-    console.log(movie)
     return{
         country: movie.country,
         director: movie.director,
