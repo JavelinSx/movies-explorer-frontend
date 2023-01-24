@@ -3,27 +3,28 @@ import { useEffect, useMemo, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard'
 import { urlApi } from '../../utils/constant.js';
 import useCurrentWidth from '../../utils/resizeListener'
+import {sizeScreen, visibleMoviesCount, visibleMoreMovies} from '../../utils/constant.js'
 
 function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlSavedImage, getKey}){
     const [itemToShow, setItemToShow] = useState(0);
     const [dataShow, setDataShow] = useState([])
     const [countCard, setCountCard] = useState(0)
-    const [countCardAdd, setCountCardAdd] = useState(2)
+    const [countCardAdd, setCountCardAdd] = useState(visibleMoreMovies.small)
 
     let width = useCurrentWidth()
 
     useEffect(() => {
-        if(width>=320){
-            setCountCard(5)
-            setCountCardAdd(2)
+        if(width>=sizeScreen.small){
+            setCountCard(visibleMoviesCount.small)
+            setCountCardAdd(visibleMoreMovies.small)
         }
-        if(width>=768){
-            setCountCard(8)
-            setCountCardAdd(2)
+        if(width>=sizeScreen.medium){
+            setCountCard(visibleMoviesCount.medium)
+            setCountCardAdd(visibleMoreMovies.small)
         }
-        if(width>=1280){
-            setCountCard(12)
-            setCountCardAdd(4)
+        if(width>=sizeScreen.wide){
+            setCountCard(visibleMoviesCount.wide)
+            setCountCardAdd(visibleMoreMovies.wide)
         }
     },[width])
 
@@ -33,7 +34,7 @@ function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handle
     },[countCard, countCardAdd, movies])
 
     const showMore = () => {
-        setItemToShow((item)=>item+countCardAdd)
+        setItemToShow(itemToShow+countCardAdd)
         setDataShow(movies.slice(0,itemToShow))
     }
 

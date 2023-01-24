@@ -14,7 +14,7 @@ function MoviesCard({movie, btnLikeClassActive, btnLikeClassDisable, handleClick
                 <button className={movie.isSaved ? btnLikeClassActive : btnLikeClassDisable} onClick={handleClick}></button>
             </div>
             <span className='movie-card__duration'>{generateDurationInfo()}</span>
-            <a href={movie.trailerLink} className='movie-card__link' target="_blank" rel='noopener noreferrer'> </a>
+            <a href={movie.trailerLink} className='movie-card__link' target="blank" rel='noopener noreferrer'> </a>
         </li>
 
     )

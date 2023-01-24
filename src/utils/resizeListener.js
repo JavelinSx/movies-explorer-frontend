@@ -16,8 +16,8 @@ function useCurrentWidth() {
     const resizeListener = () => {
       // prevent execution of previous setTimeout
       clearTimeout(timeoutId);
-      // change width from the state object after 150 milliseconds
-      timeoutId = setTimeout(() => setWidth(getWidth()), 150);
+      // change width from the state object after 50 milliseconds
+      timeoutId = setTimeout(() => setWidth(getWidth()), 50);
     };
     // set resize listener
     window.addEventListener('resize', resizeListener);

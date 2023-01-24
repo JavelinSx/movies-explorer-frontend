@@ -45,6 +45,12 @@ export function useFormWithValidation(initialValue) {
     },
     [setValues, setErrors, setIsValid]
   );
+  const resetError = useCallback(
+    ( newErrors = {}) => {
+      setErrors(newErrors);
+    },
+    [setErrors]
+  );
 
-  return { values, handleChange, errors, isValid, resetForm };
+  return { values, handleChange, errors, isValid, resetForm, resetError };
 }

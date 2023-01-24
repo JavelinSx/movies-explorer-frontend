@@ -1,4 +1,12 @@
 
+
+//storage loggedIn
+const setLoggedInStorage = (boolean) => {
+    localStorage.setItem('loggedIn', boolean)
+}
+const getLoggedInStorage = () => {
+    return JSON.parse(localStorage.getItem('loggedIn')) 
+}
 //storage BeatFilm
 const setNavigateStorage = (link) => {
     localStorage.setItem('navigationLink', JSON.stringify(link))
@@ -51,6 +59,7 @@ const getMoviesUser = () => {
 }
 // reset storage
 const resetStorage = () => {
+    setLoggedInStorage(false)
     setNavigateStorage('')
     setMoviesUser([])
     setSearchMovies([])
@@ -70,6 +79,8 @@ export {setMoviesOnBeatFilm,
         setFilterStateStorage,
         setSearchInputStorage,
         setNavigateStorage,
+        setLoggedInStorage,
+        getLoggedInStorage,
         getNavigateStorage,
         getSearchMovies,
         getSearchInputStorage,

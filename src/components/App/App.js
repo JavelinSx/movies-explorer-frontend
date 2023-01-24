@@ -15,8 +15,8 @@ import MovieApi from '../../utils/MoviesApi';
 import {setMoviesOnBeatFilm, 
         setMoviesUser, 
         setUserProfileData,
-        setNavigateStorage,
-        getNavigateStorage, 
+        setLoggedInStorage,
+        getLoggedInStorage,
         resetStorage} from '../../utils/storageData';
 
 function App() {
@@ -31,11 +31,10 @@ function App() {
 
 
   //вспомогательные стейты
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(getLoggedInStorage || false);
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [isEdit, setIsEdit] = useState(false)
-  const [navigateRedirect, setNavigateRedirect] = useState(getNavigateStorage() || '/')
   const [confirmUpdateUser, setConfirmUpdateUser] = useState(false)
 
   //проверяем куки у юзера
@@ -43,9 +42,9 @@ function App() {
     MainApi.getUserInfo()
     .then((data) => { 
       setLoggedIn(true)
+      setLoggedInStorage(true)
       setCurrentUser(data)
       setUserProfileData(data)
-      navigate(navigateRedirect)
     })
     .catch((err) => setError(err.message))
     .finally(() => {
@@ -84,8 +83,6 @@ function App() {
 
   //сбрасываем ошибку с бэка при переходах страниц
   useEffect(() => {
-    setNavigateStorage(window.location.pathname)
-    setNavigateRedirect(window.location.pathname)
     setError('')
   }, [navigate])
 
@@ -132,11 +129,11 @@ function App() {
       setLoggedIn(true)
       setCurrentUser(data)
       navigate('/movies')
+      resetForm()
     })
     .catch((err) => setError(err.message))
     .finally(() => {
       setIsLoading(false)
-      resetForm()
     })
   };
 
@@ -147,18 +144,23 @@ function App() {
       onLogin({email: data.email, password: userInfo.password}, resetForm)
       setIsLoading(false)
       navigate('/signin')
+      resetForm()
     })
     .catch((err) => setError(err.message))
     .finally(() => {
       setIsLoading(false)
-      resetForm()
     })
   }
   
   const enableEditUserInfo = () => {
     setIsEdit(!isEdit)
   }
-
+  //сбрасываем сообщение об удачном изменении данных пользователя
+  useEffect(() => {
+    if(isEdit===true){
+      setConfirmUpdateUser(false)
+    }
+  },[isEdit])
   const updateUserInfo = (userInfo) => {
     setIsLoading(true)
     MainApi.updateUserInfo(userInfo)

@@ -196,7 +196,7 @@ and (max-width : 100vw){
     }
     .navbar__item:last-child{
         min-height: auto;
-        margin-left: 340px;
+        margin-left: 357px;
     }
     .navbar__menu{
         gap: 12px;

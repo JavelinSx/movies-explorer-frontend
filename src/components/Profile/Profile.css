@@ -48,13 +48,12 @@
 }
 
 .profile__form{
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
     width: 81%;
     max-width: 410px;
-    max-height: calc(100vh - 65%);
 }
 
 .profile__form-label{
@@ -127,7 +126,18 @@
 .profile__btn-exit-hide{
     visibility: hidden;
 }
-
+.profile__btn-escape{
+    color: var(--white);
+    cursor: pointer;
+    display: block;
+    height: 45px;
+    width: 85%;
+    background-color: var(--red);
+    border-radius: 3px;
+    border: none;
+    margin-bottom: 40px;
+    transition: .2s;
+}
 .profile__btn-save{
     color: var(--white);
     cursor: pointer;
@@ -137,7 +147,7 @@
     background-color: var(--blue);
     border-radius: 3px;
     border: none;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     transition: .2s;
 }
 .profile__btn-save:disabled{
@@ -159,6 +169,7 @@
 }
 
 .profile__btn-container{
+    position: relative;
     padding-bottom: 40px;
     width: 100%;
     max-width: 410px;
@@ -178,12 +189,15 @@ and (max-width : 1279px){
     }
     .profile-container{
         width: 700px;
-        justify-content: flex-start;
+        justify-content: center;
     }
     .profile__form{
-        height: 100%;
+        padding-top: 0;
         width: 410px;
-        max-height: calc(100vh - 43%);
+    }
+    .profile__btn-container{
+        padding-top: 200px;
+        justify-content: center;
     }
     .profile__btn{
         font-size: 13px;
@@ -193,6 +207,9 @@ and (max-width : 1279px){
         padding-bottom: 96px;
     }
     .profile__btn-save{
+        width: 100%;
+    }
+    .profile__btn-escape{
         width: 100%;
     }
 }
@@ -210,8 +227,8 @@ and (max-width : 100vw){
         padding-bottom: 125px;
     }
     .profile__form{
+        padding-top: 0;
         width: 410px;
-        max-height: calc(100vh - 60%);
     }
     .profile__btn{
         font-size: 13px;
@@ -220,12 +237,15 @@ and (max-width : 100vw){
     .profile-container{
         width: 1140px;
         margin-top: 0;
-        justify-content: flex-start;
+        justify-content: center;
     }
     .profile__btn-container{
         padding-top: 150px;
     }
     .profile__btn-save{
+        width: 100%;
+    }
+    .profile__btn-escape{
         width: 100%;
     }
 }

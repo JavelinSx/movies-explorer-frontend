@@ -18,24 +18,29 @@ import { useEffect, useState, useMemo} from 'react';
 
 function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedMovies}){
 
-    const [renderMovies, setRenderMovies] = useState(getSearchMovies());
-    const [searchValue, setSearchValue] = useState(getSearchInputStorage());
-    const [checked, setChecked] = useState(getFilterStateStorage());
-    //если наш getSearchMovies() пустой, то идём сюда и берём movies из props.App
+    const [renderMovies, setRenderMovies] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [checked, setChecked] = useState(false);
+    //каждый раз когда дёргаем ручки чекбокс или строки поиска при сабмите, фильтруем фильмы относителньо полученных стейтов
+    useMemo(() => {
+        if(movies.length!==0){
+            let searchList = searchMovies(movies, searchValue, checked)
+            setRenderMovies(searchList)
+            setSearchMovies(searchList)
+        }
+    },[searchValue, checked])
+
+    //если наш getSearchMovies() пустой, то идём сюда и берём movies из props.App иначе достаём storage state
     useEffect(() => {
-        if(renderMovies.length===0){
+        if(getSearchMovies().length!==null){
+            setRenderMovies(getSearchMovies())
+            setSearchValue(getSearchInputStorage())
+            setChecked(getFilterStateStorage())
+        }else{
             setRenderMovies(movies)
         }
     },[movies, savedMovies])
-    //каждый раз когда дёргаем ручки чекбокс или строки поиска при сабмите, фильтруем фильмы относителньо полученных стейтов
-    const search = useMemo(() => {
-        let searchList = searchMovies(movies, searchValue, checked)
-        return searchList
-    },[searchValue, checked])
-    //делаем ререндер фильмов на странице каждый раз при обращении к ручкам deps
-    useEffect(() => {
-        setRenderMovies(search)
-    },[searchValue, checked])
+
     //сохраняем или удаляем фильм
     const handleClickButtonOnCard = (movie) => {
         if(!movie.isSaved){
@@ -46,12 +51,13 @@ function Movies({loggedIn, onDeleteMovie, onSaveMovie, isLoading, movies, savedM
         }
         movie.isSaved=!movie.isSaved
     }
+
     //ручка сабмит поиска
     const handleOnSearch = (searchValue) => {
         setSearchInputStorage(searchValue)
         setSearchValue(searchValue)
-        setSearchMovies(renderMovies)
     }
+
     //ручка фильтра
     const handleOnFilter = (checked) => {
         setFilterStateStorage(checked)
