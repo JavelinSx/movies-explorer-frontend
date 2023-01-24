@@ -53,6 +53,7 @@ function Profile({updateUserInfo, loggedIn, onSignout, error, isEdit, enableEdit
             form.values.email = currentUser.email
         }
     }
+    console.log(error)
     return(
             <section className='profile'>
                 <Header loggedIn={loggedIn}/>
@@ -97,7 +98,8 @@ function Profile({updateUserInfo, loggedIn, onSignout, error, isEdit, enableEdit
                     </form>
                     
                     <div className='profile__btn-container'>
-                        {isEdit ? '' : <span className={confirmUpdateUser ? 'form__confirm-submit' : 'form__error-submit'}>{confirmUpdateUser ? 'Вы успешно изменили данные' : error}</span>}
+                        {error ? <span className='form__error-submit form__error-submit-profile'>{error}</span> : ''}
+                        {isEdit ? '' : <span className={confirmUpdateUser ? 'form__confirm-submit' : ''}>{confirmUpdateUser ? 'Вы успешно изменили данные' : ''}</span>}
                         <button className={isEdit ? 'profile__btn-save' : 'profile__btn-save profile__btn-save-hide'} disabled={!form.isValid || enabledSubmitBtn} form='form-profile' >Сохранить</button>
                         <button className={isEdit ? 'profile__btn-escape' : 'profile__btn-escape profile__btn-save-hide'} onClick={handleEscapeUpdate}>Отменить</button>
                         <button className={isEdit ? 'profile__btn-edit-hide' : 'profile__btn-edit profile__btn'} onClick={handleEditProfile}>Редактировать</button>

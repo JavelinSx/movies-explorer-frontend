@@ -55,7 +55,9 @@ function App() {
   const getMovies = () => {
     MovieApi.getMovies()
     .then((movie) => {
-      setMovies(movie)
+      setMoviesOnBeatFilm(movie)
+      return setMovies(movie)
+
     })
     .catch((err) => setError(err.message))
   }
@@ -71,15 +73,10 @@ function App() {
 
   useMemo(() => {
     if(loggedIn===true){ 
-      getMovies()
       getSavedMovies()
     }
   },[loggedIn])
 
-  useEffect(() => {
-    setMoviesOnBeatFilm(movies)
-    setMoviesUser(savedMovies)
-  },[movies,savedMovies])
 
   //сбрасываем ошибку с бэка при переходах страниц
   useEffect(() => {
@@ -151,7 +148,7 @@ function App() {
       setIsLoading(false)
     })
   }
-  
+  //обнолвяем состояние редактирования профиля
   const enableEditUserInfo = () => {
     setIsEdit(!isEdit)
   }
@@ -161,6 +158,7 @@ function App() {
       setConfirmUpdateUser(false)
     }
   },[isEdit])
+
   const updateUserInfo = (userInfo) => {
     setIsLoading(true)
     MainApi.updateUserInfo(userInfo)
@@ -194,6 +192,7 @@ function App() {
 
           <Route path='/movies' element={
             <ProtectedRoute
+              getMovies={getMovies}
               component={Movies} 
               loggedIn={loggedIn}
               isLoading={isLoading}

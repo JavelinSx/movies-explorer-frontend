@@ -89,13 +89,16 @@
 .form__error-submit{
     position: absolute;
     text-align: center;
-    top: -100px;
+    top: 250px;
     left: 0;
     right: 0;
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
     color: var(--red);
+}
+.form__error-submit-profile{
+    top: -100px;
 }
 .form__confirm-submit{
     position: absolute;
@@ -163,6 +166,9 @@ and (max-width : 1279px){
     .form__confirm-submit{
         top: 80px;
     }
+    .form__error-submit-profile{
+        top: 120px;
+    }
 }
 @media screen 
 and (min-width : 1280px)
@@ -187,5 +193,8 @@ and (max-width : 100vw){
     }
     .form__confirm-submit{
         top: 60px;
+    }
+    .form__error-submit-profile{
+        top: 100px;
     }
 }
