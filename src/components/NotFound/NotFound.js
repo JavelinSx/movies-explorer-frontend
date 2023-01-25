@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function NotFound(){
     const navigate = useNavigate()
     const handleClickBack = () => {
-        navigate('/')
+        navigate(-1)
     }
     return(
         <section className='not-found'>

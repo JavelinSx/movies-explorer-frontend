@@ -1,28 +1,82 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo} from 'react';
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SearchForm from '../SearchForm/SearchForm'
 import Preloader from '../Preloader/Preloader'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
-import dataMovie from '../../utils/dbData.json'
+import {searchMovies, getDeleteMovie} from '../../utils/constant'
 
-function SavedMovies(){
 
-    const [isLoading, setIsLoading] = useState(true)
+function SavedMovies({loggedIn, onDeleteMovie, onSaveMovie, savedMovies, isLoading}){
+
+    const [renderMovies, setRenderMovies] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [checked, setChecked] = useState(false);
+    const [textEmpty, setTextEmpty] = useState('')
 
     useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 2000)
-    })
+        if(renderMovies.length===0){
+            setRenderMovies(savedMovies)
+            setTextEmpty('Нет найденных фильмов')
+        }
+        if(savedMovies.length===0){
+            setTextEmpty('Нет сохраннённых фильмов')
+        }
+    },[savedMovies])
 
-    const savedMovies = dataMovie.filter(movie => movie.isSaved)
-    
+    const search = useMemo(() => {
+        let searchList = searchMovies(savedMovies, searchValue, checked)
+        return searchList
+    },[searchValue, checked, savedMovies])
+
+    useEffect(() => {
+        setRenderMovies(search)
+    },[searchValue, checked, savedMovies])
+
+    const handleClickButtonOnCard = (movie) => {
+        onDeleteMovie(getDeleteMovie(savedMovies,movie))
+        movie.isSaved=!movie.isSaved
+    }
+
+    const handleOnSearch = (searchValue) => {
+        setSearchValue(searchValue)
+    }
+
+    const handleOnFilter = (checked) => {
+        setChecked(checked)
+    }
+
     return(
-        <section className={isLoading || savedMovies.length===0 ? 'movies movies__preload' : 'movies'}>
-            <Header isLoggin={true}></Header>
-            <SearchForm></SearchForm>
-            {isLoading ? <Preloader /> : <MoviesCardList moviesList={savedMovies} parentCall={'saved'} btnLikeClassActive='movie-card__btn' btnLikeClassDisable='movie-card__btn movie-card__btn-close'/>}
+        <section className='movies'>
+            <Header loggedIn={loggedIn}></Header>
+            <SearchForm 
+                onSearch={handleOnSearch}
+                onFilter={handleOnFilter}
+                searchValueStorage={''}
+                filterStateStorage={false}
+            />
+            {   isLoading 
+                ? 
+                    <Preloader /> 
+                : 
+                    savedMovies.length===0 || renderMovies.length===0 
+                    ?
+                    <div className='movies-card-list__fill-none'>
+                        {textEmpty}
+                    </div>
+                    :
+                    <MoviesCardList 
+                        getKey={true}
+                        onSaveMovie={onSaveMovie}
+                        onDeleteMovie={onDeleteMovie}
+                        movies={renderMovies}                       
+                        urlSavedImage={ true }
+                        handleClickButtonOnCard={(movie)=>handleClickButtonOnCard(movie)}
+                        btnLikeClassActive='movie-card__btn' 
+                        btnLikeClassDisable='movie-card__btn movie-card__btn-close'
+
+                    />                                                        
+            }
             <Footer></Footer>
         </section>
     )

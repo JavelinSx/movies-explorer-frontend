@@ -1,25 +1,41 @@
 import './SearchForm.css';
+import {useState} from 'react'
 import FilterCheckBox from '../FilterCheckBox/FilterCheckBox';
 import iconSearch from '../../images/search-icon.svg'
-function SearchForm(){
+function SearchForm({onSearch, onFilter, searchValueStorage, filterStateStorage}){
+    const [inputSearch, setInputSearch] = useState(searchValueStorage)
+    const [errorInput, setErrorInput] = useState('')
     const handleSearch = (evt) => {
         evt.preventDefault()
+        onSearch(inputSearch)
     }
+    const handleInputSearch = (evt) => {
+        setErrorInput('')
+        setInputSearch(evt.target.value)
+    }
+
+    //autocomplete отключён по причине того, что отображается неккоректно(ответа почему, не нашёл)
     return(
-        <div className='search-container'>
+        <div className='search-form__container'>
             <form className='search-form'onSubmit={handleSearch}>
                 <label className='search-input-label' htmlFor='input-search'>
                     <img className='search-input__icon-search' src={iconSearch} alt='иконка лупы'></img>
-                    <input className='search-input' placeholder='Фильм' id='input-search' required>
-                        
-                    </input>
-                    <button className='search-btn'>
-                        
-                    </button>
+                    <input 
+                        autoComplete='off'
+                        className='search-input'
+                        type='text'
+                        placeholder='Фильм'
+                        id='input-search'
+                        name='input'
+                        onChange={handleInputSearch}
+                        value={inputSearch}
+                    />
+                    <button className='search-btn' type='submit'/>
                 </label>
-
+                <FilterCheckBox onFilter={onFilter} filterStateStorage={filterStateStorage} />
+                <span className='search__error'>{errorInput}</span>
             </form>
-            <FilterCheckBox></FilterCheckBox>
+
         </div>
     )
 }

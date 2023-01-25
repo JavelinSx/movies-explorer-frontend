@@ -15,9 +15,14 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    margin-bottom: 24px;
+    margin-bottom: 33px;
     padding: 5px 0 10px 0;
     border-bottom: 1px solid var(--grey-42);
+}
+
+.form__input:disabled{
+    pointer-events: none;
+    color: var(--grey);
 }
 
 .form__input-container{
@@ -51,8 +56,18 @@
     transition: .2s;
     opacity: .7;
 }
+.form__submit-btn:disabled{
+    cursor: default;
+    background-color: var(--grey);
+}
+.form__submit-btn:disabled:hover{
+    cursor: default;
+    background-color: var(--grey);
+    opacity: 1;
+}
 
 .form__error-input{
+    width: 100%;
     position: absolute;
     top: 53px;
     left: 0;
@@ -60,12 +75,21 @@
     font-size: 10px;
     line-height: 12px;
     color: var(--red);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.form__error-input:hover{
+    overflow: inherit;
+    text-overflow: inherit;
+    white-space: inherit;
+    height: auto;
 }
 
 .form__error-submit{
     position: absolute;
     text-align: center;
-    top: calc(100% - 18%);
+    top: 250px;
     left: 0;
     right: 0;
     font-weight: 400;
@@ -73,12 +97,26 @@
     line-height: 12px;
     color: var(--red);
 }
+.form__error-submit-profile{
+    top: -100px;
+}
+.form__confirm-submit{
+    position: absolute;
+    text-align: center;
+    top: -80px;
+    left: 0;
+    right: 0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: var(--green);
+}
 
 .form__footer{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 14px 7px 18px 7px;
+    padding: 40px 7px 18px 7px;
 }
 
 .form__footer-text{
@@ -125,6 +163,12 @@ and (max-width : 1279px){
         font-size: 14px;
         line-height: 17px;
     }
+    .form__confirm-submit{
+        top: 80px;
+    }
+    .form__error-submit-profile{
+        top: 120px;
+    }
 }
 @media screen 
 and (min-width : 1280px)
@@ -146,5 +190,11 @@ and (max-width : 100vw){
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
+    }
+    .form__confirm-submit{
+        top: 60px;
+    }
+    .form__error-submit-profile{
+        top: 100px;
     }
 }

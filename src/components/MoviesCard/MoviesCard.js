@@ -1,26 +1,22 @@
 import './MoviesCard.css';
-import { useState } from 'react';
-import { urlApi } from '../../utils/constant.js';
-
-function MoviesCard({movie, btnLikeClassActive, btnLikeClassDisable, parentCall}){
+function MoviesCard({movie, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlApi, urlSavedImage}){
     const {nameRU, duration, image} = movie
-    const [isSavedMovie, setIsSavedMovie] = useState(false)
-    const [btnLikeClass, setBtnLikeClass] = useState(parentCall==='saved' ? 'movie-card__btn-close' : 'movie-card__btn')
     const generateDurationInfo = () => `${Math.floor(duration / 60)}ч ${duration % 60}м`
-    const handleSaveMovie = () => {
-        movie.isSaved = !movie.isSaved
-        setIsSavedMovie(!isSavedMovie)
-        setBtnLikeClass(!isSavedMovie ? btnLikeClassActive : btnLikeClassDisable)
+    const handleClick = () => {
+        handleClickButtonOnCard(movie)
     }
     return(
+
         <li className='movie-card'>
-            <img className='movie-card__image' src={urlApi+image.url} alt='Картинка из фильма'></img>
+            <img className='movie-card__image' src={urlSavedImage ? image : urlApi+image.url} alt='Кадр из фильма'></img>
             <div className='movie-card__container'>
                 <h1 className='movie-card__title'>{nameRU}</h1>
-                <button className={btnLikeClass} onClick={handleSaveMovie}></button>
+                <button className={movie.isSaved ? btnLikeClassActive : btnLikeClassDisable} onClick={handleClick}></button>
             </div>
             <span className='movie-card__duration'>{generateDurationInfo()}</span>
+            <a href={movie.trailerLink} className='movie-card__link' target="blank" rel='noopener noreferrer'> </a>
         </li>
+
     )
 }
 

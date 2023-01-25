@@ -5,10 +5,10 @@ import AboutProject from '../AboutProject/AboutProject'
 import Techs from '../Techs/Techs'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
-function Main(){
+function Main({loggedIn}){
     return(
         <main className='main'>
-            <Header isLoggin={false}></Header>
+            <Header loggedIn={loggedIn}></Header>
             <Promo></Promo>
             <AboutProject></AboutProject>
             <Techs></Techs>

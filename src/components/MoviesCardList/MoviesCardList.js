@@ -1,67 +1,64 @@
 import './MoviesCardList.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard'
+import { urlApi } from '../../utils/constant.js';
+import useCurrentWidth from '../../utils/resizeListener'
+import {sizeScreen, visibleMoviesCount, visibleMoreMovies} from '../../utils/constant.js'
 
-
-function MoviesCardList({moviesList, btnLikeClassActive, btnLikeClassDisable, parentCall}){
-
+function MoviesCardList({movies, btnLikeClassActive, btnLikeClassDisable, handleClickButtonOnCard, urlSavedImage, getKey}){
     const [itemToShow, setItemToShow] = useState(0);
-    const [dataShow, setDataShow] = useState(moviesList)
+    const [dataShow, setDataShow] = useState([])
     const [countCard, setCountCard] = useState(0)
-    const [countCardAdd, setCountCardAdd] = useState(2)
+    const [countCardAdd, setCountCardAdd] = useState(visibleMoreMovies.small)
+
+    let width = useCurrentWidth()
 
     useEffect(() => {
-        if(window.screen.width>=320){
-            setCountCard(5)
-            setCountCardAdd(2)
+        if(width>=sizeScreen.small){
+            setCountCard(visibleMoviesCount.small)
+            setCountCardAdd(visibleMoreMovies.small)
         }
-        if(window.screen.width>=768){
-            setCountCard(8)
-            setCountCardAdd(2)
+        if(width>=sizeScreen.medium){
+            setCountCard(visibleMoviesCount.medium)
+            setCountCardAdd(visibleMoreMovies.small)
         }
-        if(window.screen.width>=1280){
-            setCountCard(12)
-            setCountCardAdd(4)
+        if(width>=sizeScreen.wide){
+            setCountCard(visibleMoviesCount.wide)
+            setCountCardAdd(visibleMoreMovies.wide)
         }
-    },[])
+    },[width])
 
-    useEffect(() => {
-        setDataShow(moviesList.slice(0,countCard))
+    useMemo(() => {
+        setDataShow(movies.slice(0,countCard))
         setItemToShow(countCard+countCardAdd)
-    },[countCard, countCardAdd, moviesList])
-
+    },[countCard, countCardAdd, movies])
 
     const showMore = () => {
-        setItemToShow((item)=>item+countCardAdd)
-        setDataShow(moviesList.slice(0,itemToShow))
+        setItemToShow(itemToShow+countCardAdd)
+        setDataShow(movies.slice(0,itemToShow))
     }
 
     return(
         <>
             {
-                dataShow.length === 0 ?             
-                <div className='movies-card-list__fill-none'>
-                    Нет сохранённых фильмов
-                </div>
-                :
                 <ul className='movies-card-list'>
                     {
-                        
                         dataShow.map((movie)=>
                             <MoviesCard
-                                key={movie.id}
+                                key={getKey ? movie.movieId : movie.id}
                                 movie={movie}
-                                parentCall={parentCall}
+                                urlApi={urlApi}
+                                urlSavedImage={urlSavedImage}
+                                handleClickButtonOnCard={(movie)=>handleClickButtonOnCard(movie)}
                                 btnLikeClassActive={btnLikeClassActive}
                                 btnLikeClassDisable={btnLikeClassDisable}
                             ></MoviesCard>
                         )
                     }
                 </ul>
-
             }
             {
-                dataShow.length>3 ? <button className='movies-card-list__add' onClick={showMore}>Ещё</button> : ''
+                dataShow.length!==movies.length ? <button className='movies-card-list__add' onClick={showMore}>Ещё</button> : null
             }
         </>
     )
